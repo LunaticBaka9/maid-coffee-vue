@@ -1,9 +1,12 @@
-<script setup>
-import HeaderMenu from "./components/HeaderMenu.vue";
-</script>
-
 <template>
-    <HeaderMenu />
+    <el-config-provider :locale="locale">
+        <router-view :key="route.fullPath"></router-view>
+    </el-config-provider>
 </template>
 
-<style scoped></style>
+<script setup>
+import { useRoute } from "vue-router";
+import locale from "element-plus/es/locale/lang/zh-cn";
+
+const route = useRoute();
+</script>
