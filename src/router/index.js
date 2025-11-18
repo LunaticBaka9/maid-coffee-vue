@@ -7,13 +7,4 @@ const router = createRouter({
     routes: [...routeIndex],
 });
 
-router.beforeEach(async (to, from, next) => {
-    document.title = (to.meta.title ? to.meta.title + " - " : "") + import.meta.env.VITE_APP_PROJECT_NAME;
-    next();
-});
-
-router.afterEach((to) => {
-    window.scrollTo(0, 0);
-});
-
 export default router;

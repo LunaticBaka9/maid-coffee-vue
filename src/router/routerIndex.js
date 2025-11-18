@@ -1,15 +1,16 @@
+import index from "../views/index/index.vue";
+import shop from "../views/index/shop.vue";
+
 const routeIndex = [
     {
         path: "/",
-        name: "indexWeb",
-        meta: { title: "首页", requiresAuth: false },
-        component: () => import("../views/index/index.vue"),
+        name: "index",
+        component: index,
     },
     {
         path: "/shop",
         name: "shop",
-        meta: { title: "登录", requiresAuth: false },
-        component: () => import("../views/index/shop.vue"),
+        component: shop,
     },
 ];
 
