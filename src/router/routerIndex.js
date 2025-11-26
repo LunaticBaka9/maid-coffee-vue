@@ -1,16 +1,13 @@
-import index from "../views/index/index.vue";
-import shop from "../views/index/shop.vue";
-
 const routeIndex = [
     {
         path: "/",
-        name: "index",
-        component: index,
+        name: "indexWeb",
+        component: () => import("../views/index/index.vue"),
     },
     {
         path: "/shop",
         name: "shop",
-        component: shop,
+        component: () => import("../views/index/shop.vue"),
     },
 ];
 
