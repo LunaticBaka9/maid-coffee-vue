@@ -1,42 +1,38 @@
 <template>
-    <div class="common-layout">
+    <div class="common-layout" style="overflow: hidden">
         <el-container>
-            <el-header>
+            <el-header height="4rem" class="header">
                 <Header></Header>
             </el-header>
             <el-container>
-                <el-aside>
+                <el-aside width="12rem">
                     <AsideMenu></AsideMenu>
                 </el-aside>
-                <el-scrollbar>
-                    <el-main>
-                        <div class="shop-page">
-                            <el-container>
-                                <el-header>
-                                    <div class="header">
-                                        <h1>热门新店</h1>
-                                    </div>
-                                </el-header>
 
-                                <el-main>
-                                    <div class="new-shops">
-                                        <el-row gutter="20">
-                                            <el-col :span="6" v-for="(item, index) in shopList" :key="index">
-                                                <el-card shadow="hover">
-                                                    <img :src="item.image" alt="店铺图片" class="shop-image" />
-                                                    <div class="shop-info">
-                                                        <p>{{ item.location }}</p>
-                                                        <p>{{ item.name }}</p>
-                                                    </div>
-                                                </el-card>
-                                            </el-col>
-                                        </el-row>
-                                    </div>
-                                </el-main>
-                            </el-container>
+                <el-main>
+                    <el-header>
+                        <div class="header">
+                            <p class="card-title-primary">
+                                <span class="text">热门店面</span>
+                            </p>
                         </div>
-                    </el-main>
-                </el-scrollbar>
+                    </el-header>
+                    <div>
+                        <el-row :gutter="30">
+                            <el-col :span="4" v-for="(item, index) in shopList" :key="index">
+                                <router-link to="shopinfo">
+                                    <el-card shadow="hover" class="shopcard">
+                                        <img :src="item.image" alt="店铺图片" class="shop-image" />
+                                        <div class="shop-info">
+                                            <div>{{ item.location }}</div>
+                                            <div class="text-info">{{ item.name }}</div>
+                                        </div>
+                                    </el-card>
+                                </router-link>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </el-main>
             </el-container>
         </el-container>
     </div>
@@ -107,28 +103,38 @@ const shopList = reactive([
         name: "mirai connect (ミライコネクト)",
         image: "src/assets/img/shop/shop_image_7400_240x240.jpg",
     },
+    {
+        id: 7400,
+        location: "福岡県",
+        name: "mirai connect (ミライコネクト)",
+        image: "src/assets/img/shop/shop_image_7400_240x240.jpg",
+    },
+    {
+        id: 7400,
+        location: "福岡県",
+        name: "mirai connect (ミライコネクト)",
+        image: "src/assets/img/shop/shop_image_7400_240x240.jpg",
+    },
 ]);
 </script>
 
 <style scoped>
+* {
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+}
+
 .custom-link {
     text-decoration: none;
 }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    gap: 10px;
-}
-
-.Aside {
-    width: 300px;
-}
-
-.el-header {
+.header {
     margin-bottom: 20px;
+}
+
+.el-container {
+    height: calc(100vh - 1rem);
+    font-family: Arial, sans-serif;
 }
 
 .main-container {
@@ -140,36 +146,73 @@ const shopList = reactive([
     padding: 10px;
 }
 
-.shop-page {
-    font-family: Arial, sans-serif;
+/* 标题背景样式 */
+.card-title-primary {
+    background-color: #ff69b4;
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
+    background-image: linear-gradient(
+        135deg,
+        #ffb6c1 25%,
+        #ff69b4 25%,
+        #ff69b4 50%,
+        #ffb6c1 50%,
+        #ffb6c1 75%,
+        #ff69b4 75%,
+        #ff69b4
+    );
+    background-size: 14px 14px;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 20px;
+.card-title-primary .text {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-.new-shops {
-    margin-top: 20px;
+/* 商店卡片 */
+.el-card {
+    --el-card-padding: 5px;
+    max-width: 300px;
 }
 
 .shop-image {
+    display: block;
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    border-radius: 4px;
+    max-width: 100%;
 }
 
 .shop-info {
-    text-align: center;
+    flex: 1 1 auto;
 }
 
-.shop-info p {
-    margin: 0;
+.shop-info div {
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    margin-bottom: 20px;
+    line-height: 1;
+    color: #6c757d;
+    font-weight: 400;
+}
+
+.text-info {
+    display: block;
+    height: 2.8em;
+    line-height: 1.4;
+    overflow: hidden;
+    word-break: break-all;
+    font-size: 0.85rem;
+    color: #17a2b8;
 }
 
 .el-col {
     margin-bottom: 20px;
 }
+
 .scrollbar-demo-item {
     display: flex;
     align-items: center;

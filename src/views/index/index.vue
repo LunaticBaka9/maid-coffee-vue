@@ -1,11 +1,11 @@
 <template>
-    <div class="common-layout">
+    <div class="common-layout" style="overflow: hidden">
         <el-container>
-            <el-header>
+            <el-header height="4rem" class="header">
                 <Header />
             </el-header>
             <el-container>
-                <el-aside>
+                <el-aside width="12rem">
                     <AsideMenu />
                 </el-aside>
                 <el-scrollbar>
@@ -18,7 +18,7 @@
                             </el-carousel>
                         </div>
                         <div>
-                            <h1>简介</h1>
+                            <h1>网页简介</h1>
                             <h3>
                                 <strong>女仆咖啡厅</strong>（日语：メイドカフェ meido kafe；英语：maid
                                 café），又称女仆喫茶（メイド喫茶／メイドきっさ meido
@@ -51,6 +51,11 @@ const banders = reactive([
     text-decoration: none;
 }
 
+.el-container {
+    height: calc(100vh - 1rem);
+    font-family: Arial, sans-serif;
+}
+
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -59,11 +64,7 @@ const banders = reactive([
     gap: 10px;
 }
 
-.Aside {
-    width: 300px;
-}
-
-.el-header {
+.header {
     margin-bottom: 20px;
 }
 

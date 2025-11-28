@@ -9,6 +9,11 @@ const routeIndex = [
         name: "shop",
         component: () => import("../views/index/shop.vue"),
     },
+    {
+        path: "/shopinfo",
+        name: "shopinfo",
+        component: () => import("../views/index/shopinfo.vue"),
+    },
 ];
 
 export default routeIndex;
