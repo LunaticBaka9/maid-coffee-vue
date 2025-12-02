@@ -9,7 +9,9 @@
         @select="handleSelect"
     >
         <el-menu-item index="0">
-            <img style="width: 100px" src="" alt="Element logo" />
+            <router-link to="/">
+                <img style="width: 100px" src="" alt="Element logo" />
+            </router-link>
         </el-menu-item>
         <el-menu-item index="1">
             <router-link to="/"> 首页 </router-link>
@@ -17,18 +19,21 @@
         <el-sub-menu index="2">
             <template #title> <span>咖啡厅</span></template>
             <router-link to="shop" class="custom-link">
-                <el-menu-item index="2-1">热门新店</el-menu-item>
+                <el-menu-item index="2-1">咖啡厅介绍</el-menu-item>
             </router-link>
-            <el-menu-item index="2-2">店面搜索</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
+            <el-menu-item index="2-2">热门新店</el-menu-item>
+            <el-menu-item index="2-3">店面搜索</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="3">
-            <template #title><span>咖啡</span></template>
-            <el-menu-item index="3-1">咖啡介绍</el-menu-item>
+            <template #title> <span>咖啡</span></template>
+            <router-link to="coffee" class="custom-link"
+                ><el-menu-item index="3-1">咖啡简介</el-menu-item>
+            </router-link>
+
             <el-menu-item index="3-2">咖啡种类</el-menu-item>
         </el-sub-menu>
         <el-menu-item index="4">
-            <router-link>登录</router-link>
+            <router-link to="login">登录</router-link>
         </el-menu-item>
         <el-menu-item index="5">Orders</el-menu-item>
     </el-menu>

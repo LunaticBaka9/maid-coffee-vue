@@ -10,9 +10,19 @@ const routeIndex = [
         component: () => import("../views/index/shop.vue"),
     },
     {
+        path: "/shopintro",
+        name: "shopintro",
+        component: () => import("../views/index/shopintro.vue"),
+    },
+    {
         path: "/shopinfo",
         name: "shopinfo",
         component: () => import("../views/index/shopinfo.vue"),
+    },
+    {
+        path: "/coffee",
+        name: "coffee",
+        component: () => import("../views/index/coffee.vue"),
     },
 ];
 

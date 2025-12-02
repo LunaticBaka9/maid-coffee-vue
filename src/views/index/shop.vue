@@ -21,7 +21,7 @@
                         <el-row :gutter="30">
                             <el-col :span="4" v-for="(item, index) in shopList" :key="index">
                                 <router-link to="shopinfo">
-                                    <el-card shadow="hover" class="shopcard">
+                                    <el-card shadow="hover">
                                         <img :src="item.image" alt="店铺图片" class="shop-image" />
                                         <div class="shop-info">
                                             <div>{{ item.location }}</div>
@@ -32,6 +32,7 @@
                             </el-col>
                         </el-row>
                     </div>
+                    <br /><br />
                 </el-main>
             </el-container>
         </el-container>
@@ -130,11 +131,6 @@ const shopList = reactive([
 
 .header {
     margin-bottom: 20px;
-}
-
-.el-container {
-    height: calc(100vh - 1rem);
-    font-family: Arial, sans-serif;
 }
 
 .main-container {

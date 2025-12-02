@@ -7,6 +7,5 @@
 <script setup>
 import { useRoute } from "vue-router";
 import locale from "element-plus/es/locale/lang/zh-cn";
-
 const route = useRoute();
 </script>

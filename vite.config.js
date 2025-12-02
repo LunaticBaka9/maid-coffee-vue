@@ -6,4 +6,9 @@ export default defineConfig({
     optimizeDeps: {
         include: ["element-plus"],
     },
+    resolve: {
+        alias: {
+            "@": "/src",
+        },
+    },
 });

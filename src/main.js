@@ -4,6 +4,7 @@ import ElementPlus from "element-plus"; // 引入 element-plus第三方UI组件�
 import "element-plus/dist/index.css"; // 引入 element-plus 样式
 import * as ElementPlusIconsVue from "@element-plus/icons-vue"; // 引入 element-plus 图标库
 import router from "./router/index";
+import "./assets/css/global.css";
 
 const app = createApp(App);
 app.use(router);
