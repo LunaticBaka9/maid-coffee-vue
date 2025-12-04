@@ -23,6 +23,16 @@
 import { reactive, ref } from "vue";
 import Header from "./header.vue";
 import AsideMenu from "./aside.vue";
+import request from "../../utils/request";
+import { ElMessage } from "element-plus";
+
+request.get("/user/selectAllUsers").then((res) => {
+    if (res.code === "200") {
+        console.log(res);
+    } else {
+        ElMessage.error(res.msg);
+    }
+});
 </script>
 
 <style scoped></style>

@@ -9,8 +9,8 @@
                     <AsideMenu />
                 </el-aside>
 
-                <el-main>
-                    <el-card class="login-card">
+                <el-main class="login-card">
+                    <el-card>
                         <el-form ref="form" :model="userVo" label-width="100px">
                             <el-form-item label="用户姓名">
                                 <el-input v-model="userVo.username" placeholder="请输入用户名"></el-input>
@@ -49,16 +49,10 @@ const userVo = reactive({
 <style scoped>
 /* 登录表单 */
 .login-card {
-    width: 500px;
-}
-
-.login {
-    height: 100%;
-    /* flex样式呈现*/
+    margin-top: 40px;
+    flex-direction: row;
     display: flex;
-    /*垂直排列*/
-    flex-direction: column;
-    align-items: center; /*由于flex-direction: column，因此align-items代表的是水平方向*/
-    justify-content: center; /*由于flex-direction: column，因此justify-content代表的是垂直方向*/
+    justify-content: center;
+    align-self: start;
 }
 </style>
