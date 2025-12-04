@@ -182,7 +182,6 @@ const add = () => {
     formRef.value.validate((valid) => {
         if (valid) {
             //验证通过的情况下调用接口
-            data.form.createTime = dataSting;
             request.post("/user/add", data.form).then((res) => {
                 if (res.code === "200") {
                     data.formVisible = false;
