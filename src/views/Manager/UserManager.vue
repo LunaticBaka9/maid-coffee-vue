@@ -32,8 +32,8 @@
                     </div>
 
                     <div class="card" style="margin-bottom: 5px">
+                        <el-button type="primary" @click="handleAdd">新 增</el-button>
                         <el-button type="danger">批量删除</el-button>
-                        <el-button type="primary">新 增</el-button>
                         <el-button type="success">批量导入</el-button>
                         <el-button type="info">批量导出</el-button>
                     </div>
@@ -73,6 +73,45 @@
                             @size-change="load"
                         />
                     </div>
+
+                    <el-dialog v-model="data.formVisible" title="用户信息" width="500" destroy-on-close>
+                        <el-form
+                            ref="formRef"
+                            :model="data.form"
+                            :rules="data.rules"
+                            label-width="80px"
+                            style="padding: 20px 30px"
+                        >
+                            <el-form-item prop="username" label="账号">
+                                <el-input v-model="data.form.username" autocomplete="off" />
+                            </el-form-item>
+                            <el-form-item prop="password" label="密码">
+                                <el-input v-model="data.form.password" autocomplete="off" />
+                            </el-form-item>
+                            <el-form-item prop="name" label="名称">
+                                <el-input v-model="data.form.name" autocomplete="off" />
+                            </el-form-item>
+                            <el-form-item prop="email" label="邮箱">
+                                <el-input v-model="data.form.email" autocomplete="off" />
+                            </el-form-item>
+                            <el-form-item prop="phone" label="电话">
+                                <el-input v-model="data.form.phone" autocomplete="off" />
+                            </el-form-item>
+                            <el-form-item prop="userType" label="用户类型">
+                                <el-radio-group v-model="data.form.userType">
+                                    <el-radio border value="user">user</el-radio>
+                                    <el-radio border value="editor">editor</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                        </el-form>
+                        <template #footer>
+                            <div class="dialog-footer">
+                                <el-button @click="data.formVisible = false">取消</el-button>
+                                <el-button type="primary" @click="add"> 保存 </el-button>
+                            </div>
+                        </template>
+                    </el-dialog>
+                    <br /><br /><br /><br />
                 </el-main>
             </el-container>
         </el-container>
@@ -83,7 +122,7 @@
 import Header from "@/views/index/header.vue";
 import AsideMenu from "@/views/index/aside.vue";
 import request from "@/utils/request.js";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { ElMessage } from "element-plus";
 
 const data = reactive({
@@ -93,14 +132,26 @@ const data = reactive({
     pageSize: 5,
     total: 6,
     tableData: [],
+    formVisible: false,
+    form: {},
+    rules: {
+        username: [{ required: true, message: "请填写账号", trigger: "blur" }],
+        password: [{ required: true, message: "请填写密码", trigger: "blur" }],
+        name: [{ required: true, message: "请填写名称", trigger: "blur" }],
+        email: [{ required: true, message: "请填写邮箱", trigger: "blur" }],
+        userType: [{ reqired: true, message: "请选择用户类型", trigger: "change" }],
+    },
 });
+
+const formRef = ref();
 
 const load = () => {
     request
-        .get("/user/selectPage", {
+        .get("user/selectPage", {
             params: {
                 pageNum: data.pageNum,
                 pageSize: data.pageSize,
+                username: data.username,
                 name: data.name,
             },
         })
@@ -119,6 +170,32 @@ const reset = () => {
     data.username = null;
     data.name = null;
     load();
+};
+
+const handleAdd = () => {
+    data.formVisible = true;
+    data.form = {};
+};
+
+const add = () => {
+    //应用表单进行验证
+    formRef.value.validate((valid) => {
+        if (valid) {
+            //验证通过的情况下调用接口
+            data.form.createTime = dataSting;
+            request.post("/user/add", data.form).then((res) => {
+                if (res.code === "200") {
+                    data.formVisible = false;
+                    ElMessage.success("新增成功");
+                    load();
+                } else {
+                    ElMessage.error(res.msg);
+                }
+            });
+        } else {
+            ElMessage.error(res.msg);
+        }
+    });
 };
 </script>
 
