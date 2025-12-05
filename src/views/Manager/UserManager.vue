@@ -56,7 +56,7 @@
                             <el-table-column prop="userType" label="用户类型" />
                             <el-table-column label="操作">
                                 <template #default="scope">
-                                    <el-button size="small"> 修改 </el-button>
+                                    <el-button size="small" @click="handleEidor(scope.row)"> 修改 </el-button>
                                     <el-button size="small" type="danger"> 删除 </el-button>
                                 </template>
                             </el-table-column>
@@ -107,7 +107,7 @@
                         <template #footer>
                             <div class="dialog-footer">
                                 <el-button @click="data.formVisible = false">取消</el-button>
-                                <el-button type="primary" @click="add"> 保存 </el-button>
+                                <el-button type="primary" @click="save"> 保存 </el-button>
                             </div>
                         </template>
                     </el-dialog>
@@ -177,6 +177,11 @@ const handleAdd = () => {
     data.form = {};
 };
 
+const handleEidor = (row) => {
+    data.form = JSON.parse(JSON.stringify(row));
+    data.formVisible = true;
+};
+
 const add = () => {
     //应用表单进行验证
     formRef.value.validate((valid) => {
@@ -195,6 +200,30 @@ const add = () => {
             ElMessage.error(res.msg);
         }
     });
+};
+
+const update = (row) => {
+    //应用表单进行验证
+    formRef.value.validate((valid) => {
+        if (valid) {
+            //验证通过的情况下调用接口
+            request.put("/user/update", data.form).then((res) => {
+                if (res.code === "200") {
+                    data.formVisible = false;
+                    ElMessage.success("修改成功");
+                    load();
+                } else {
+                    ElMessage.error(res.msg);
+                }
+            });
+        } else {
+            ElMessage.error(res.msg);
+        }
+    });
+};
+
+const save = () => {
+    data.form.userId ? update() : add();
 };
 </script>
 
