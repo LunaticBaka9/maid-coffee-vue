@@ -33,7 +33,7 @@
 
                     <div class="card" style="margin-bottom: 5px">
                         <el-button type="primary" @click="handleAdd">新 增</el-button>
-                        <el-button type="danger">批量删除</el-button>
+                        <el-button type="danger" @click="deleteBatch">批量删除</el-button>
                         <el-button type="success">批量导入</el-button>
                         <el-button type="info">批量导出</el-button>
                     </div>
@@ -44,6 +44,7 @@
                             border
                             :data="data.tableData"
                             style="width: 100%"
+                            @selection-change="handleSelectionChange"
                             :header-cell-style="{ color: '#333', backgroundColor: '#ffb6c1' }"
                         >
                             <el-table-column type="selection" width="55" />
@@ -57,7 +58,7 @@
                             <el-table-column label="操作">
                                 <template #default="scope">
                                     <el-button size="small" @click="handleEidor(scope.row)"> 修改 </el-button>
-                                    <el-button size="small" type="danger"> 删除 </el-button>
+                                    <el-button size="small" type="danger" @click="del(scope.row)"> 删除 </el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -123,7 +124,7 @@ import Header from "@/views/index/header.vue";
 import AsideMenu from "@/views/index/aside.vue";
 import request from "@/utils/request.js";
 import { reactive, ref } from "vue";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 
 const data = reactive({
     username: null,
@@ -141,6 +142,7 @@ const data = reactive({
         email: [{ required: true, message: "请填写邮箱", trigger: "blur" }],
         userType: [{ reqired: true, message: "请选择用户类型", trigger: "change" }],
     },
+    rows: [],
 });
 
 const formRef = ref();
@@ -182,6 +184,10 @@ const handleEidor = (row) => {
     data.formVisible = true;
 };
 
+const handleSelectionChange = (rows) => {
+    data.rows = rows;
+};
+
 const add = () => {
     //应用表单进行验证
     formRef.value.validate((valid) => {
@@ -220,6 +226,41 @@ const update = (row) => {
             ElMessage.error(res.msg);
         }
     });
+};
+
+const del = (row) => {
+    //应用表单进行验证
+    ElMessageBox.confirm("确认删除此列数据", "删除确认", { type: "warning" })
+        .then((res) => {
+            request.put("/user/delete", row).then((res) => {
+                if (res.code === "200") {
+                    ElMessage.success("删除成功");
+                    load();
+                } else {
+                    ElMessage.error(res.msg);
+                }
+            });
+        })
+        .catch((err) => {});
+};
+
+const deleteBatch = () => {
+    if (data.rows.length == 0) {
+        ElMessage.warning("请选择数据");
+        return;
+    }
+    ElMessageBox.confirm("确认删除此列数据", "删除确认", { type: "warning" })
+        .then((res) => {
+            request.put("/user/deleteBatch", data.rows).then((res) => {
+                if (res.code === "200") {
+                    ElMessage.success("批量删除成功");
+                    load();
+                } else {
+                    ElMessage.error(res.msg);
+                }
+            });
+        })
+        .catch((err) => {});
 };
 
 const save = () => {
