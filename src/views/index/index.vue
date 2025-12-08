@@ -76,9 +76,8 @@
 
                                     <el-card class="support-card" shadow="hover">
                                         <div class="support-row">
-                                            <img src="@/assets/img/icons/support.png" alt="support" />
                                             <div class="support-text">
-                                                需要帮助或查找附近咖啡馆？使用站内搜索或登录查看更多推荐。
+                                                TIPS： 需要帮助或查找附近咖啡馆？使用站内搜索或登录查看更多推荐。
                                             </div>
                                         </div>
                                     </el-card>
@@ -86,6 +85,7 @@
                             </el-col>
                         </el-row>
                     </div>
+                    <br /><br /><br /><br />
                 </el-main>
             </el-container>
         </el-container>

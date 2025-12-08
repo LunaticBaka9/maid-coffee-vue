@@ -307,17 +307,8 @@
 </template>
 
 <script setup name="coffee">
-import { reactive, ref } from "vue";
 import Header from "./header.vue";
 import AsideMenu from "./aside.vue";
-
-const handleClick = (event) => {
-    event.preventDefault(); // 阻止默认行为，避免 URL 改变
-    const targetId = event.target.getAttribute("href");
-    if (targetId) {
-        document.querySelector(targetId).scrollIntoView({ behavior: "smooth" });
-    }
-};
 </script>
 
 <style scoped>
