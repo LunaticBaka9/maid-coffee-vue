@@ -98,12 +98,6 @@
                             <el-form-item prop="phone" label="电话">
                                 <el-input v-model="data.form.phone" autocomplete="off" />
                             </el-form-item>
-                            <el-form-item prop="userType" label="用户类型">
-                                <el-radio-group v-model="data.form.userType">
-                                    <el-radio border value="user">user</el-radio>
-                                    <el-radio border value="editor">editor</el-radio>
-                                </el-radio-group>
-                            </el-form-item>
                         </el-form>
                         <template #footer>
                             <div class="dialog-footer">
@@ -153,7 +147,6 @@ const data = reactive({
         password: [{ required: true, message: "请填写密码", trigger: "blur" }],
         name: [{ required: true, message: "请填写名称", trigger: "blur" }],
         email: [{ required: true, message: "请填写邮箱", trigger: "blur" }],
-        userType: [{ reqired: true, message: "请选择用户类型", trigger: "change" }],
     },
     rows: [],
 });
@@ -162,7 +155,7 @@ const formRef = ref();
 
 const load = () => {
     request
-        .get("user/selectPage", {
+        .get("admin/selectPage", {
             params: {
                 pageNum: data.pageNum,
                 pageSize: data.pageSize,
@@ -206,7 +199,7 @@ const add = () => {
     formRef.value.validate((valid) => {
         if (valid) {
             //验证通过的情况下调用接口
-            request.post("/user/add", data.form).then((res) => {
+            request.post("/admin/add", data.form).then((res) => {
                 if (res.code === "200") {
                     data.formVisible = false;
                     ElMessage.success("新增成功");
@@ -226,7 +219,7 @@ const update = (row) => {
     formRef.value.validate((valid) => {
         if (valid) {
             //验证通过的情况下调用接口
-            request.put("/user/update", data.form).then((res) => {
+            request.put("/admin/update", data.form).then((res) => {
                 if (res.code === "200") {
                     data.formVisible = false;
                     ElMessage.success("修改成功");
@@ -245,7 +238,7 @@ const del = (row) => {
     //应用表单进行验证
     ElMessageBox.confirm("确认删除此列数据", "删除确认", { type: "warning" })
         .then((res) => {
-            request.put("/user/delete", row).then((res) => {
+            request.put("/admin/delete", row).then((res) => {
                 if (res.code === "200") {
                     ElMessage.success("删除成功");
                     load();
@@ -264,7 +257,7 @@ const deleteBatch = () => {
     }
     ElMessageBox.confirm("确认删除此列数据", "删除确认", { type: "warning" })
         .then((res) => {
-            request.put("/user/deleteBatch", data.rows).then((res) => {
+            request.put("/admin/deleteBatch", data.rows).then((res) => {
                 if (res.code === "200") {
                     ElMessage.success("批量删除成功");
                     load();

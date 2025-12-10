@@ -35,10 +35,17 @@
         <el-menu-item index="4">
             <router-link to="login">登录</router-link>
         </el-menu-item>
-        <el-menu-item index="5">Orders</el-menu-item>
+        <el-menu-item index="5" @click="logout">退出登录</el-menu-item>
     </el-menu>
 </template>
-<script setup name="header"></script>
+
+<script setup name="header">
+const logout = () => {
+    localStorage.removeItem("code_user");
+    location.href = "/login";
+};
+</script>
+
 <style scoped>
 * {
     text-decoration: none;

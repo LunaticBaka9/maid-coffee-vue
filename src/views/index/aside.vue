@@ -1,52 +1,53 @@
 <template>
-    <el-scrollbar height="100vh">
-        <el-col>
-            <el-menu>
-                <router-link to="/" class="custom-link">
-                    <el-menu-item class="card-title-primary">
-                        <span class="text">首页</span>
-                    </el-menu-item>
+    <el-col>
+        <el-menu>
+            <router-link to="/" class="custom-link">
+                <el-menu-item class="card-title-primary">
+                    <span class="text">首页</span>
+                </el-menu-item>
+            </router-link>
+            <el-menu-item-group>
+                <router-link to="shopintro" class="custom-link">
+                    <el-menu-item index="1-1">咖啡厅介绍</el-menu-item>
                 </router-link>
-                <el-menu-item-group>
-                    <router-link to="shopintro" class="custom-link">
-                        <el-menu-item index="1-1">咖啡厅介绍</el-menu-item>
-                    </router-link>
-                    <router-link to="shop" class="custom-link">
-                        <el-menu-item index="1-2">热门店面</el-menu-item>
-                    </router-link>
-                    <router-link to="" class="custom-link">
-                        <el-menu-item index="1-3">店面搜索</el-menu-item>
-                    </router-link>
-                </el-menu-item-group>
-                <router-link to="coffee" class="custom-link">
-                    <el-menu-item class="card-title-primary">
-                        <span class="text">咖啡</span>
-                    </el-menu-item>
+                <router-link to="shop" class="custom-link">
+                    <el-menu-item index="1-2">热门店面</el-menu-item>
                 </router-link>
-                <el-menu-item-group title="">
-                    <router-link to="shop" class="custom-link">
-                        <el-menu-item index="2-1">咖啡种类</el-menu-item>
-                    </router-link>
-                    <router-link to="" class="custom-link">
-                        <el-menu-item index="2-2">咖啡</el-menu-item>
-                    </router-link>
-                </el-menu-item-group>
                 <router-link to="" class="custom-link">
-                    <el-menu-item class="card-title-primary">
-                        <span class="text">管理</span>
-                    </el-menu-item>
+                    <el-menu-item index="1-3">店面搜索</el-menu-item>
                 </router-link>
-                <el-menu-item-group>
-                    <router-link to="shopManager" class="custom-link">
-                        <el-menu-item index="2-1">店面管理</el-menu-item>
-                    </router-link>
-                    <router-link to="userManager" class="custom-link">
-                        <el-menu-item index="2-2">用户管理</el-menu-item>
-                    </router-link>
-                </el-menu-item-group>
-            </el-menu>
-        </el-col>
-    </el-scrollbar>
+            </el-menu-item-group>
+            <router-link to="coffee" class="custom-link">
+                <el-menu-item class="card-title-primary">
+                    <span class="text">咖啡</span>
+                </el-menu-item>
+            </router-link>
+            <el-menu-item-group title="">
+                <router-link to="shop" class="custom-link">
+                    <el-menu-item index="2-1">咖啡种类</el-menu-item>
+                </router-link>
+                <router-link to="" class="custom-link">
+                    <el-menu-item index="2-2">咖啡</el-menu-item>
+                </router-link>
+            </el-menu-item-group>
+            <router-link to="" class="custom-link">
+                <el-menu-item class="card-title-primary">
+                    <span class="text">管理</span>
+                </el-menu-item>
+            </router-link>
+            <el-menu-item-group>
+                <router-link to="shopManager" class="custom-link">
+                    <el-menu-item index="2-1">店面管理</el-menu-item>
+                </router-link>
+                <router-link to="adminManager" class="custom-link">
+                    <el-menu-item index="2-2">管理员管理</el-menu-item>
+                </router-link>
+                <router-link to="userManager" class="custom-link">
+                    <el-menu-item index="2-2">用户管理</el-menu-item>
+                </router-link>
+            </el-menu-item-group>
+        </el-menu>
+    </el-col>
 </template>
 
 <script setup></script>

@@ -61,10 +61,6 @@ const banders = reactive([
     gap: 10px;
 }
 
-.header {
-    margin-bottom: 20px;
-}
-
 .main-container {
     display: flex;
 }

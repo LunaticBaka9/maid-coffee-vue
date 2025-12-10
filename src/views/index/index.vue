@@ -93,26 +93,8 @@
 </template>
 
 <script setup name="index">
-import { onMounted } from "vue";
 import Header from "./header.vue";
 import AsideMenu from "./aside.vue";
-import request from "../../utils/request";
-import { ElMessage } from "element-plus";
-
-onMounted(() => {
-    request
-        .get("/user/selectAllUsers")
-        .then((res) => {
-            if (res && res.code === "200") {
-                console.log(res);
-            } else if (res && res.msg) {
-                ElMessage.error(res.msg);
-            }
-        })
-        .catch((err) => {
-            console.error(err);
-        });
-});
 </script>
 
 <style scoped>

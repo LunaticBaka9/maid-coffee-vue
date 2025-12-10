@@ -129,10 +129,6 @@ const shopList = reactive([
     text-decoration: none;
 }
 
-.header {
-    margin-bottom: 20px;
-}
-
 .main-container {
     display: flex;
 }
