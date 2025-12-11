@@ -131,6 +131,8 @@ if (userStr) {
     const user = JSON.parse(userStr);
     if (!user.userId) {
         location.href = "/login";
+    } else if (user.userType !== "admin") {
+        location.href = "/NoPermission";
     }
 } else {
     location.href = "/login";

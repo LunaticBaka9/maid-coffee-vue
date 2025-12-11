@@ -9,25 +9,13 @@
                     <AsideMenu />
                 </el-aside>
 
-                <el-main></el-main>
+                <el-main> Bro以为自己是Big Boss，能掌管这里的所有权限 </el-main>
             </el-container>
         </el-container>
     </div>
 </template>
 
-<script setup name="ShopManager">
+<script setup>
 import Header from "@/views/index/header.vue";
 import AsideMenu from "@/views/index/aside.vue";
-
-const userStr = localStorage.getItem("code_user");
-if (userStr) {
-    const user = JSON.parse(userStr);
-    if (!user.userId) {
-        location.href = "/login";
-    } else if (user.userType !== "admin") {
-        location.href = "/NoPermission";
-    }
-} else {
-    location.href = "/login";
-}
 </script>

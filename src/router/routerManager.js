@@ -14,6 +14,11 @@ const routeManager = [
         name: "shopManager",
         component: () => import("@/views/Manager/ShopManager.vue"),
     },
+    {
+        path: "/noPermission",
+        name: "noPermission",
+        component: () => import("@/views/Manager/NoPermission.vue"),
+    },
 ];
 
 export default routeManager;

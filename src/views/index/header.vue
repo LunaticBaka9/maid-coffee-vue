@@ -18,7 +18,7 @@
         </el-menu-item>
         <el-sub-menu index="2">
             <template #title> <span>咖啡厅</span></template>
-            <router-link to="shop" class="custom-link">
+            <router-link to="shopintro" class="custom-link">
                 <el-menu-item index="2-1">咖啡厅介绍</el-menu-item>
             </router-link>
             <el-menu-item index="2-2">热门新店</el-menu-item>
@@ -26,20 +26,34 @@
         </el-sub-menu>
         <el-sub-menu index="3">
             <template #title> <span>咖啡</span></template>
-            <router-link to="coffee" class="custom-link"
-                ><el-menu-item index="3-1">咖啡简介</el-menu-item>
+            <router-link to="coffee" class="custom-link">
+                <el-menu-item index="3-1">咖啡简介</el-menu-item>
             </router-link>
 
             <el-menu-item index="3-2">咖啡种类</el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="4">
-            <router-link to="login">登录</router-link>
-        </el-menu-item>
-        <el-menu-item index="5" @click="logout">退出登录</el-menu-item>
+        <el-sub-menu index="4">
+            <template #title>
+                <span>
+                    <el-icon><UserFilled /></el-icon>
+                    {{ data.user?.name }}
+                </span>
+            </template>
+            <router-link to="login">
+                <el-menu-item index="4-1"> 登录 </el-menu-item>
+            </router-link>
+            <el-menu-item index="4-2" @click="logout">退出登录</el-menu-item>
+        </el-sub-menu>
     </el-menu>
 </template>
 
 <script setup name="header">
+import { reactive } from "vue";
+
+const data = reactive({
+    user: JSON.parse(localStorage.getItem("code_user") || "{}"),
+});
+
 const logout = () => {
     localStorage.removeItem("code_user");
     location.href = "/login";

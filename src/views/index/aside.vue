@@ -47,15 +47,12 @@
                 </router-link>
             </el-menu-item-group>
         </el-menu>
+        <br /><br /><br /><br />
     </el-col>
 </template>
 
 <script setup></script>
 <style scoped>
-.el-scrollbar {
-    font-family: Arial, sans-serif;
-}
-
 .custom-link {
     text-decoration: none;
 }
