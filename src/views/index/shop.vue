@@ -17,21 +17,19 @@
                             </p>
                         </div>
                     </el-header>
-                    <div>
-                        <el-row :gutter="30">
-                            <el-col :span="4" v-for="(item, index) in shopList" :key="index">
-                                <router-link to="shopinfo">
-                                    <el-card shadow="hover">
-                                        <img :src="item.image" alt="店铺图片" class="shop-image" />
-                                        <div class="shop-info">
-                                            <div>{{ item.location }}</div>
-                                            <div class="text-info">{{ item.name }}</div>
-                                        </div>
-                                    </el-card>
-                                </router-link>
-                            </el-col>
-                        </el-row>
-                    </div>
+                    <el-row :gutter="30" class="shop-cards">
+                        <el-col :span="4" v-for="(item, index) in shopList" :key="index">
+                            <router-link to="shopinfo">
+                                <el-card shadow="hover">
+                                    <img :src="item.image" alt="店铺图片" class="shop-image" />
+                                    <div class="shop-info">
+                                        <div>{{ item.location }}</div>
+                                        <div class="text-info">{{ item.name }}</div>
+                                    </div>
+                                </el-card>
+                            </router-link>
+                        </el-col>
+                    </el-row>
                     <br /><br /><br />
                 </el-main>
             </el-container>
@@ -127,6 +125,12 @@ const shopList = reactive([
 
 .custom-link {
     text-decoration: none;
+}
+
+.shop-cards {
+    padding: 20px;
+    border-radius: 7px;
+    overflow: hidden;
 }
 
 .main-container {

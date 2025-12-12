@@ -126,7 +126,6 @@ import AsideMenu from "./aside.vue";
     opacity: 0.95;
 }
 .content-wrap {
-    max-width: 1100px;
     margin: 0 auto;
 }
 .guide-card {

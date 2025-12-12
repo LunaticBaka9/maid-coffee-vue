@@ -123,7 +123,7 @@
                                     <p></p>
                                 </div>
                             </el-col>
-                            <el-col :span="6">
+                            <el-col :span="5">
                                 <table class="infobox">
                                     <caption class="infobox-title">
                                         <span>咖啡</span>
@@ -313,7 +313,8 @@ import AsideMenu from "./aside.vue";
 
 <style scoped>
 .coffee-content {
-    margin-left: 2rem;
+    margin: 0 20px 0 20px;
+    background-color: #fff;
 }
 
 .heading {
@@ -322,6 +323,7 @@ import AsideMenu from "./aside.vue";
 }
 .content-text {
     margin-top: 16px;
+    margin-left: 1rem;
     font-family: sans-serif;
     color: var(--color-base, #202122);
 }
