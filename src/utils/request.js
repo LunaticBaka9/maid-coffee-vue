@@ -20,7 +20,7 @@ request.interceptors.response.use(
     (response) => {
         const res = response.data;
         if (typeof res === "string") {
-            res = res ? JSON.parse(res) : res;
+            res = res ? JSON.parse(res) : res; // eslint-disable-line no-unused-vars
         }
         return res;
     },

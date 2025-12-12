@@ -112,7 +112,7 @@
                                         <el-carousel-item
                                             v-for="(image, index) in shopImg"
                                             :key="index"
-                                            style="height: auto; width: auto"
+                                            style="height: auto; width: 100%"
                                         >
                                             <img :src="image" />
                                         </el-carousel-item>
