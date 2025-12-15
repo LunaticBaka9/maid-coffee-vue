@@ -18,10 +18,10 @@
                         </div>
                     </div>
 
-                    <div class="content-wrap">
+                    <div class="content-wrap" shadow="never">
                         <el-row :gutter="20">
                             <el-col :span="18">
-                                <el-card class="guide-card" shadow="hover">
+                                <el-card class="guide-card">
                                     <div class="guide-header">
                                         <h2 class="large-title">日本咖啡馆指南</h2>
                                         <div class="guide-lead">为中国游客提供清晰、实用的咖啡馆探索入口</div>
@@ -74,7 +74,7 @@
                                         </ul>
                                     </el-card>
 
-                                    <el-card class="support-card" shadow="hover">
+                                    <el-card class="support-card" shadow="never">
                                         <div class="support-row">
                                             <div class="support-text">
                                                 TIPS： 需要帮助或查找附近咖啡馆？使用站内搜索或登录查看更多推荐。
