@@ -20,18 +20,20 @@
                     <div class="card-body">
                         <el-row :gutter="20">
                             <el-col :span="4">
-                                <img src="@\assets\img\shop\shop_image_32005_240x240.jpg" class="image" />
+                                <img :src="data.shopData.coverPath" class="cover" />
                             </el-col>
                             <el-col :span="14">
                                 <p class="mb-1">
-                                    世界の終末期に不良たちが集う酒場！ゴシックなメイドがお給仕する柏のコンカフェ！
+                                    {{ data.shopData.slogn }}
                                 </p>
-                                <p class="mb-1">カフェ BAR</p>
-                                <h1><a class="shop-name" href="#">不良メイド喫茶・Bar黒月柏店</a></h1>
+                                <p class="mb-1">{{ data.shopData.shopType }}</p>
+                                <h1>
+                                    <a class="shop-name" href="#">{{ data.shopData.shopName }}</a>
+                                </h1>
                             </el-col>
                             <el-col :span="6" class="col-3">
                                 <p class="text-center">
-                                    <a class="font-weight-bold" style="font-size: 22px">TEL：04-7110-3155</a>
+                                    <a class="font-weight-bold" style="font-size: 22px">TEL：{{ data.shopData.tel }}</a>
                                 </p>
                                 <p class="text-center">お気軽にお問わせくださいませ♪</p>
                                 <p class="text-center">
@@ -46,11 +48,11 @@
                                     <tbody>
                                         <tr>
                                             <th><span class="label-pill mb-2">预计消费</span></th>
-                                            <td>90 RMB~</td>
+                                            <td>{{ data.shopData.price }} RMB~</td>
                                         </tr>
                                         <tr>
                                             <th><span class="label-pill mb-2">营业时间</span></th>
-                                            <td>周二〜周四 19点〜23点/周五・周六 19点〜4点30分</td>
+                                            <td>{{ data.shopData.openTime }}</td>
                                         </tr>
                                         <tr>
                                             <th><span class="label-pill mb-2">营业日</span></th>
@@ -58,22 +60,43 @@
                                                 <table class="date-table">
                                                     <tbody>
                                                         <tr>
+                                                            <th>日</th>
                                                             <th>一</th>
                                                             <th>二</th>
                                                             <th>三</th>
                                                             <th>四</th>
                                                             <th>五</th>
                                                             <th>六</th>
-                                                            <th>日</th>
                                                         </tr>
                                                         <tr>
-                                                            <td class="text-center">−</td>
-                                                            <td class="text-center">−</td>
-                                                            <td class="text-center">○</td>
-                                                            <td class="text-center">○</td>
-                                                            <td class="text-center">○</td>
-                                                            <td class="text-center">○</td>
-                                                            <td class="text-center">○</td>
+                                                            <td>
+                                                                <p v-if="OpenDays.Sun" class="table-text-center">√</p>
+                                                                <p v-else class="table-text-center">X</p>
+                                                            </td>
+                                                            <td>
+                                                                <p v-if="OpenDays.Mon" class="table-text-center">√</p>
+                                                                <p v-else class="table-text-center">X</p>
+                                                            </td>
+                                                            <td>
+                                                                <p v-if="OpenDays.Tues" class="table-text-center">√</p>
+                                                                <p v-else class="table-text-center">X</p>
+                                                            </td>
+                                                            <td>
+                                                                <p v-if="OpenDays.Wed" class="table-text-center">√</p>
+                                                                <p v-else class="table-text-center">X</p>
+                                                            </td>
+                                                            <td>
+                                                                <p v-if="OpenDays.Thur" class="table-text-center">√</p>
+                                                                <p v-else class="table-text-center">X</p>
+                                                            </td>
+                                                            <td>
+                                                                <p v-if="OpenDays.Fri" class="table-text-center">√</p>
+                                                                <p v-else class="table-text-center">X</p>
+                                                            </td>
+                                                            <td>
+                                                                <p v-if="OpenDays.Sat" class="table-text-center">√</p>
+                                                                <p v-else class="table-text-center">X</p>
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -87,7 +110,7 @@
                                     <tbody>
                                         <tr>
                                             <th><span class="label-pill mb-2">地址</span></th>
-                                            <td>千葉県柏市柏3丁目6-16 磯野ビル4F</td>
+                                            <td>{{ data.shopData.address }}</td>
                                         </tr>
                                         <tr>
                                             <th><span class="label-pill mb-2">最近的地铁</span></th>
@@ -108,7 +131,7 @@
                         <el-tabs v-model="activeName" type="card" stretch="top" style="background-color: white">
                             <el-tab-pane label="店铺详情" name="first">
                                 <div>
-                                    <el-carousel style="height: 800px; margin-top: 10px" :autoplay="false">
+                                    <el-carousel style="height: 700px; margin-top: 10px" :autoplay="false">
                                         <el-carousel-item
                                             v-for="(image, index) in shopImg"
                                             :key="index"
@@ -126,45 +149,35 @@
                                                         <ul>
                                                             <li class="md-5">
                                                                 <span class="label label-primary">其一</span>
-                                                                可以制作手工啤酒的咖啡厅（con cofe）
+                                                                {{ data.shopData.obs1 }}
                                                             </li>
                                                             <li class="md-5">
                                                                 <span class="label label-primary">其二</span>
-                                                                既能唱卡拉ok又能做DJ ! ！
+                                                                {{ data.shopData.obs2 }}
                                                             </li>
                                                             <li class="md-5">
                                                                 <span class="label label-primary">其三</span>
-                                                                充满涂鸦艺术的网络空间
+                                                                {{ data.shopData.obs3 }}
                                                             </li>
                                                         </ul>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">简介</th>
-                                                    <td>
-                                                        世界末日不良们聚集的酒馆！哥特式女仆服务的柏咖啡厅！<br />
-                                                        每年由女仆煮大麦制作的原创手工啤酒大受欢迎！这里提供各种美味和有趣的美食，包括禁止的CBD啤酒！还可以品尝女仆亲手做的料理哦！
-                                                        让人联想到世界末日的涂鸦艺术和真实赛博朋克风格的异空间值得一看！<br />
-                                                        只充电1100日元<br />
-                                                        时间无限制/卡拉OK唱到饱/有原创鸡尾酒特典/卡拉OK点播OK<br />
-                                                        从JR柏站东口步行5分钟（从上野乘坐电车直通约30分钟）
-                                                    </td>
+                                                    <td v-html="data.intro"></td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">种类</th>
-                                                    <td>咖啡厅BAR （con cafe）</td>
+                                                    <td>{{ data.shopData.shopType }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">预计消费</th>
-                                                    <td>90 RMB~</td>
+                                                    <td>{{ data.shopData.price }} RMB~</td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">菜单</th>
-                                                    <td>
-                                                        充电1,100日元<br />
-                                                        时间无限制/卡拉ok无限畅唱<br />
-                                                        饮料700日元起，食物600日元起可以订购。<br />
-                                                        没有任何额外费用！请每小时至少订购1个订单！可以进行切奇摄影，但这是原创鸡尾酒的特典，详情请咨询演员。
+                                                    <td style="white-space: pre-wrap">
+                                                        {{ data.shopData.menu }}
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -177,11 +190,11 @@
                                                 </tr>
                                                 <tr>
                                                     <th width="130">电话号码</th>
-                                                    <td>04-7110-3155</td>
+                                                    <td>{{ data.shopData.tel }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">营业时间</th>
-                                                    <td>周二〜周四 19点〜23点/周五・周六 19点〜4点30分</td>
+                                                    <td>{{ data.shopData.openTime }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">营业日</th>
@@ -189,22 +202,78 @@
                                                         <table class="date-table">
                                                             <tbody>
                                                                 <tr>
+                                                                    <th>日</th>
                                                                     <th>一</th>
                                                                     <th>二</th>
                                                                     <th>三</th>
                                                                     <th>四</th>
                                                                     <th>五</th>
                                                                     <th>六</th>
-                                                                    <th>日</th>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="text-center">−</td>
-                                                                    <td class="text-center">−</td>
-                                                                    <td class="text-center">○</td>
-                                                                    <td class="text-center">○</td>
-                                                                    <td class="text-center">○</td>
-                                                                    <td class="text-center">○</td>
-                                                                    <td class="text-center">○</td>
+                                                                    <td>
+                                                                        <p
+                                                                            v-if="OpenDays.Sun"
+                                                                            class="table-text-center"
+                                                                        >
+                                                                            √
+                                                                        </p>
+                                                                        <p v-else class="table-text-center">X</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p
+                                                                            v-if="OpenDays.Mon"
+                                                                            class="table-text-center"
+                                                                        >
+                                                                            √
+                                                                        </p>
+                                                                        <p v-else class="table-text-center">X</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p
+                                                                            v-if="OpenDays.Tues"
+                                                                            class="table-text-center"
+                                                                        >
+                                                                            √
+                                                                        </p>
+                                                                        <p v-else class="table-text-center">X</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p
+                                                                            v-if="OpenDays.Wed"
+                                                                            class="table-text-center"
+                                                                        >
+                                                                            √
+                                                                        </p>
+                                                                        <p v-else class="table-text-center">X</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p
+                                                                            v-if="OpenDays.Thur"
+                                                                            class="table-text-center"
+                                                                        >
+                                                                            √
+                                                                        </p>
+                                                                        <p v-else class="table-text-center">X</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p
+                                                                            v-if="OpenDays.Fri"
+                                                                            class="table-text-center"
+                                                                        >
+                                                                            √
+                                                                        </p>
+                                                                        <p v-else class="table-text-center">X</p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p
+                                                                            v-if="OpenDays.Sat"
+                                                                            class="table-text-center"
+                                                                        >
+                                                                            √
+                                                                        </p>
+                                                                        <p v-else class="table-text-center">X</p>
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -213,37 +282,44 @@
                                                 <tr>
                                                     <th width="130">详细分类</th>
                                                     <td>
-                                                        面向女性 / 面向男性 / 团体OK / 商品销售 / 酒精 / 可刷卡 / 活动日
-                                                        / 每日菜单 / 可预约 / 可包场 / 原创制服 / 可吸烟 / 优惠券 / 热闹
-                                                        / 深夜营业 / 大提琴 / 现场演出 / 电源 / 卡拉ok /
+                                                        {{ data.shopData.tags }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">地址</th>
-                                                    <td>千葉県柏市柏3丁目6-16 磯野ビル4F</td>
+                                                    <td>{{ data.shopData.address }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">官网</th>
                                                     <td>
-                                                        <a href="https://lit.link/kurotsukikswd">
-                                                            https://lit.link/kurotsukikswd
-                                                        </a>
+                                                        <span v-if="!data.shopData.offical">-</span>
+                                                        <span v-else>
+                                                            <a :href="data.shopData.offical">
+                                                                {{ data.shopData.offical }}
+                                                            </a>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">twitter</th>
                                                     <td>
-                                                        <a href="https://twitter.com/https:x.comkurotsuki_kswd">
-                                                            https://twitter.com/https:x.comkurotsuki_kswd
-                                                        </a>
+                                                        <span v-if="!data.shopData.twitter">-</span>
+                                                        <span v-else>
+                                                            <a :href="data.shopData.twitter">
+                                                                {{ data.shopData.twitter }}
+                                                            </a>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th width="130">facebook</th>
                                                     <td>
-                                                        <a href="https://www.facebook.com/kurotsukikswd">
-                                                            https://www.facebook.com/kurotsukikswd
-                                                        </a>
+                                                        <span v-if="!data.shopData.facebook">-</span>
+                                                        <span v-else>
+                                                            <a :href="data.shopData.facebook">
+                                                                {{ data.shopData.facebook }}
+                                                            </a>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -264,7 +340,17 @@
                             <el-tab-pane label="其他" name="fourth">Task</el-tab-pane>
                         </el-tabs>
                     </div>
-                    <br /><br /><br /><br />
+                    <el-header>
+                        <div class="card-header">
+                            <p class="card-title-primary">
+                                <span class="text">访客评论</span>
+                            </p>
+                        </div>
+                        <div>
+                            <h1>超绝功能尚未学会（</h1>
+                        </div>
+                    </el-header>
+                    <br /><br /><br /><br /><br /><br /><br />
                 </el-main>
             </el-container>
         </el-container>
@@ -272,11 +358,54 @@
 </template>
 
 <script setup name="shopinfo">
-import Header from "./header.vue";
-import AsideMenu from "./aside.vue";
+import Header from "@/views/components/header.vue";
+import AsideMenu from "@/views/components/aside.vue";
 import { reactive, ref } from "vue";
+import request from "../../../utils/request";
+import router from "../../../router";
 
 const activeName = ref("first");
+
+const data = reactive({
+    user: JSON.parse(localStorage.getItem("code_user") || "{}"),
+    shopId: router.currentRoute.value.query.shopId,
+    intro: "",
+    menu: "",
+    shopData: [],
+});
+
+const OpenDays = reactive({
+    Sun: 1,
+    Mon: 1,
+    Tues: 1,
+    Wed: 1,
+    Thur: 1,
+    Fri: 1,
+    Sat: 1,
+});
+
+const load = () => {
+    request.get("shop/selectShopById/" + data.shopId).then((res) => {
+        if (res.code === "200") {
+            data.shopData = res.data;
+            data.coverPath = res.data.coverPath;
+            data.intro = res.data.intro.replace(/\n/g, "<br>");
+            data.menu = res.data.menu.replace(/\n/g, "<br>");
+            OpenDays.Sun = res.data.sun;
+            OpenDays.Mon = res.data.mon;
+            OpenDays.Tues = res.data.wed;
+            OpenDays.Thur = res.data.thur;
+            OpenDays.Fri = res.data.fri;
+            OpenDays.Sat = res.data.sat;
+            console.log(res.data.sun);
+        } else {
+            ElMessage.error(res.msg);
+        }
+    });
+};
+load();
+
+console.log(OpenDays.Sun);
 
 const shopImg = reactive([
     "src/assets/img/shopTitleImage/shop_titleimage1_32005_1240.jpg",
@@ -294,8 +423,7 @@ a:hover {
     text-decoration: underline;
 }
 
-.image {
-    height: auto;
+.cover {
     display: block;
     width: 100%;
     height: 100%;
@@ -308,6 +436,11 @@ a:hover {
 
 .text-center {
     text-align: center;
+}
+
+.table-text-center {
+    text-align: center;
+    margin: 0;
 }
 
 .shop-name {

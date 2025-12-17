@@ -18,6 +18,17 @@
                         </div>
                     </el-header>
                     <el-row :gutter="30" class="shop-cards">
+                        <el-col :span="4" v-for="(item, index) in data.tableData" :key="index">
+                            <el-card shadow="hover" @click="navTo('/shopinfo?shopId=' + item.shopId)">
+                                <img :src="item.coverPath" alt="店铺图片" class="shop-image" />
+                                <div class="shop-info">
+                                    <div>{{ item.location }}</div>
+                                    <div class="text-info">{{ item.shopName }}</div>
+                                </div>
+                            </el-card>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="30" class="shop-cards">
                         <el-col :span="4" v-for="(item, index) in shopList" :key="index">
                             <router-link to="shopinfo">
                                 <el-card shadow="hover">
@@ -38,81 +49,115 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
-import Header from "./header.vue";
-import AsideMenu from "./aside.vue";
+import { reactive, ref } from "vue";
+import Header from "@/views/components/header.vue";
+import AsideMenu from "@/views/components/aside.vue";
+import request from "../../../utils/request";
 
-const updates = reactive([
-    { id: 1, title: "Maid Cafe Sweet Treats", image: "" },
-    { id: 2, title: "新しい店舗", image: "" },
-    { id: 3, title: "イベント情報", image: "" },
-    { id: 4, title: "特典情報", image: "" },
-]);
+const data = reactive({
+    tableData: [],
+});
+
+const navTo = (url) => {
+    location.href = url;
+};
+
+const load = () => {
+    request.get("shop/selectAllShops").then((res) => {
+        if (res.code === "200") {
+            console.log(res.data);
+            data.tableData = res.data;
+        } else {
+            ElMessage.error(res.msg);
+        }
+    });
+};
+load();
 
 const shopList = reactive([
     {
         id: 32005,
         location: "千葉県",
         name: "不良メイド喫茶・Bar黒月柏店",
-        image: "src/assets/img/shop/shop_image_32005_240x240.jpg",
+        image: "api/img/shop/shop_image_32005_240x240.jpg",
     },
     {
         id: 15242,
         location: "神奈川県",
         name: "不良メイド喫茶・Bar黒月横浜本店",
-        image: "src/assets/img/shop/shop_image_15242_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_15242_240x240.jpg",
     },
-    { id: 12522, location: "大阪府", name: "アンネット", image: "src/assets/img/shop/shop_image_12522_240x240.jpg" },
+    {
+        id: 12522,
+        location: "大阪府",
+        name: "アンネット",
+        image: "http://localhost:8081/img/shop/shop_image_12522_240x240.jpg",
+    },
     {
         id: 12431,
         location: "東京都",
         name: "秋葉原☆うさぎと星のコンカフェ LittleStarRabbit",
-        image: "src/assets/img/shop/shop_image_12431_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_12431_240x240.jpg",
     },
     {
         id: 12424,
         location: "東京都",
         name: "プリティデビルメイト",
-        image: "src/assets/img/shop/shop_image_12424_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_12424_240x240.jpg",
     },
     {
         id: 8000,
         location: "東京都",
         name: "アニソン酒場 宝包-PAOPAO-",
-        image: "src/assets/img/shop/shop_image_8000_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_8000_240x240.jpg",
     },
     {
         id: 7823,
         location: "神奈川県",
         name: "アミューズメントポーカー・カジノ VALUE(バリュー)",
-        image: "src/assets/img/shop/shop_image_7823_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_7823_240x240.jpg",
     },
-    { id: 7804, location: "東京都", name: "melfi", image: "src/assets/img/shop/shop_image_7804_240x240.jpg" },
-    { id: 7795, location: "東京都", name: "がさいれ！", image: "src/assets/img/shop/shop_image_7795_240x240.jpg" },
-    { id: 7762, location: "大阪府", name: "cafe&bar Funcy", image: "src/assets/img/shop/shop_image_7762_240x240.jpg" },
+    {
+        id: 7804,
+        location: "東京都",
+        name: "melfi",
+        image: "http://localhost:8081/img/shop/shop_image_7804_240x240.jpg",
+    },
+    {
+        id: 7795,
+        location: "東京都",
+        name: "がさいれ！",
+        image: "http://localhost:8081/img/shop/shop_image_7795_240x240.jpg",
+    },
+    {
+        id: 7762,
+        location: "大阪府",
+        name: "cafe&bar Funcy",
+        image: "http://localhost:8081/img/shop/shop_image_7762_240x240.jpg",
+    },
     {
         id: 7660,
         location: "大阪府",
         name: "SleepingForest (スリーピングフォレスト)",
-        image: "src/assets/img/shop/shop_image_7660_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_7660_240x240.jpg",
     },
     {
         id: 7400,
         location: "福岡県",
         name: "mirai connect (ミライコネクト)",
-        image: "src/assets/img/shop/shop_image_7400_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_7400_240x240.jpg",
     },
     {
         id: 7400,
         location: "福岡県",
         name: "mirai connect (ミライコネクト)",
-        image: "src/assets/img/shop/shop_image_7400_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_7400_240x240.jpg",
     },
     {
         id: 7400,
         location: "福岡県",
         name: "mirai connect (ミライコネクト)",
-        image: "src/assets/img/shop/shop_image_7400_240x240.jpg",
+        image: "http://localhost:8081/img/shop/shop_image_7400_240x240.jpg",
     },
 ]);
 </script>

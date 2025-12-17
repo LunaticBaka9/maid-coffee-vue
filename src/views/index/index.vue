@@ -66,7 +66,7 @@
 
                                     <el-card class="reminder-card" shadow="never">
                                         <h4 class="reminder-title">给中国游客的小贴士</h4>
-                                        <ul class="tips small">
+                                        <ul class="tips">
                                             <li>语言：大多数热门店铺都提供中文菜单，并能进行基本的中文沟通。</li>
                                             <li>礼仪：保持礼貌，尊重他人的工作和服务界限。</li>
                                             <li>拍照：通常允许拍摄食物和店内装饰，但合影前请先征得同意。</li>
@@ -93,8 +93,8 @@
 </template>
 
 <script setup name="index">
-import Header from "./header.vue";
-import AsideMenu from "./aside.vue";
+import Header from "@/views/components/header.vue";
+import AsideMenu from "@/views/components/aside.vue";
 </script>
 
 <style scoped>
@@ -153,7 +153,11 @@ import AsideMenu from "./aside.vue";
     margin-top: 12px;
 }
 .tips {
-    margin-left: 1.2rem;
+    padding: 0px;
+    list-style: none;
+}
+.tips li {
+    margin: 0.5rem;
 }
 .closing {
     margin-top: 20px;
@@ -189,10 +193,6 @@ import AsideMenu from "./aside.vue";
 .reminder-title {
     color: #c2185b;
     margin: 0 0 8px 0;
-}
-.tips.small {
-    margin-left: 1rem;
-    font-size: 0.95rem;
 }
 .support-card {
     padding: 10px 12px;

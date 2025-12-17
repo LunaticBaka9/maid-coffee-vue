@@ -10,7 +10,7 @@
     >
         <el-menu-item index="0">
             <router-link to="/">
-                <img style="width: 100px" src="" alt="Element logo" />
+                <img style="width: 100px" src="" alt="咖啡厅Wiki" />
             </router-link>
         </el-menu-item>
         <el-menu-item index="1">

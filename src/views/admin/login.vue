@@ -58,8 +58,8 @@
 </template>
 
 <script setup name="login" lang="ts">
-import Header from "../index/header.vue";
-import AsideMenu from "../index/aside.vue";
+import Header from "@/views/components/header.vue";
+import AsideMenu from "@/views/components/aside.vue";
 import { reactive, ref } from "vue";
 import request from "../../utils/request";
 import { ElMessage } from "element-plus";
@@ -86,7 +86,7 @@ const login = () => {
                     //存储用户信息
                     localStorage.setItem("code_user", JSON.stringify(res.data || "{}"));
                     ElMessage.success("登录成功");
-                    router.push("/");
+                    router.go(-1);
                 } else {
                     ElMessage.error(res.msg);
                 }

@@ -48,7 +48,6 @@
 
                     <div class="card" style="margin-bottom: 5px">
                         <el-table
-                            stripe
                             border
                             :data="data.tableData"
                             style="width: 100%"
@@ -56,14 +55,18 @@
                             :header-cell-style="{ color: '#333', backgroundColor: '#ffb6c1' }"
                         >
                             <el-table-column type="selection" width="55" />
-                            <el-table-column prop="shopId" label="店铺ID" />
-                            <el-table-column prop="shopName" label="店铺名称" />
-                            <el-table-column prop="location" label="所在地区" />
-                            <el-table-column prop="slogn" label="slogn" show-overflow-tooltip />
-                            <el-table-column prop="tel" label="电话" />
-                            <el-table-column prop="openTime" label="营业时间" show-overflow-tooltip />
-                            <el-table-column prop="price" label="人均价格(RMB)" />
-                            <el-table-column label="操作">
+                            <el-table-column fixed prop="shopId" label="店铺ID" width="100" />
+                            <el-table-column prop="shopName" label="店铺名称" width="150" />
+                            <el-table-column prop="location" label="所在地区" width="150" />
+                            <el-table-column prop="slogn" label="slogn" show-overflow-tooltip width="150" />
+                            <el-table-column prop="tel" label="电话" width="150" />
+                            <el-table-column prop="openTime" label="营业时间" show-overflow-tooltip width="150" />
+                            <el-table-column prop="price" label="人均价格(RMB)" width="130" />
+                            <el-table-column prop="intro" label="店铺介绍" width="150" show-overflow-tooltip />
+                            <el-table-column prop="offical" label="官网" show-overflow-tooltip width="150" />
+                            <el-table-column prop="twitter" label="twitter" show-overflow-tooltip width="150" />
+                            <el-table-column prop="facebook" label="facebook" show-overflow-tooltip width="150" />
+                            <el-table-column fixed="right" label="操作" min-width="150">
                                 <template #default="scope">
                                     <el-button size="small" @click="handleEidor(scope.row)"> 修改 </el-button>
                                     <el-button size="small" type="danger" @click="del(scope.row)"> 删除 </el-button>
@@ -132,23 +135,25 @@
 </template>
 
 <script setup name="ShopManager">
-import Header from "@/views/index/header.vue";
-import AsideMenu from "@/views/index/aside.vue";
+import Header from "@/views/components/header.vue";
+import AsideMenu from "@/views/components/aside.vue";
 import request from "@/utils/request.js";
-import { reactive, ref } from "vue";
+import { onBeforeMount, reactive, ref } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 
-const userStr = localStorage.getItem("code_user");
-if (userStr) {
-    const user = JSON.parse(userStr);
-    if (!user.userId) {
+onBeforeMount(() => {
+    const userStr = localStorage.getItem("code_user");
+    if (userStr) {
+        const user = JSON.parse(userStr);
+        if (!user.userId) {
+            location.href = "/login";
+        } else if (user.userType !== "admin" && user.userType !== "editor") {
+            location.href = "/NoPermission";
+        }
+    } else {
         location.href = "/login";
-    } else if (user.userType !== "admin" && user.userType !== "editor") {
-        location.href = "/NoPermission";
     }
-} else {
-    location.href = "/login";
-}
+});
 
 const data = reactive({
     shopId: null,

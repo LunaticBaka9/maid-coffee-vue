@@ -84,8 +84,8 @@
 </template>
 
 <script setup name="login" lang="ts">
-import Header from "../index/header.vue";
-import AsideMenu from "../index/aside.vue";
+import Header from "@/views/components/header.vue";
+import AsideMenu from "@/views/components/aside.vue";
 import { ref, reactive } from "vue";
 import { ElMessage } from "element-plus";
 import router from "../../router";

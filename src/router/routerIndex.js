@@ -7,22 +7,22 @@ const routeIndex = [
     {
         path: "/shop",
         name: "shop",
-        component: () => import("../views/index/shop.vue"),
+        component: () => import("../views/index/shops/shop.vue"),
     },
     {
-        path: "/shopintro",
-        name: "shopintro",
-        component: () => import("../views/index/shopintro.vue"),
+        path: "/wiki/cafeShop",
+        name: "cafeShop",
+        component: () => import("../views/index/wiki/cafeShop.vue"),
     },
     {
         path: "/shopinfo",
         name: "shopinfo",
-        component: () => import("../views/index/shopinfo.vue"),
+        component: () => import("../views/index/shops/shopinfo.vue"),
     },
     {
-        path: "/coffee",
+        path: "/wiki/coffee",
         name: "coffee",
-        component: () => import("../views/index/coffee.vue"),
+        component: () => import("../views/index/wiki/coffee.vue"),
     },
 ];
 

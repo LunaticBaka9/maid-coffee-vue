@@ -307,8 +307,8 @@
 </template>
 
 <script setup name="coffee">
-import Header from "./header.vue";
-import AsideMenu from "./aside.vue";
+import Header from "@/views/components/header.vue";
+import AsideMenu from "@/views/components/aside.vue";
 </script>
 
 <style scoped>

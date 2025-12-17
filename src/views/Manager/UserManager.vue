@@ -120,23 +120,25 @@
 </template>
 
 <script setup name="userManager">
-import Header from "@/views/index/header.vue";
-import AsideMenu from "@/views/index/aside.vue";
+import Header from "@/views/components/header.vue";
+import AsideMenu from "@/views/components/aside.vue";
 import request from "@/utils/request.js";
-import { reactive, ref } from "vue";
+import { onBeforeMount, reactive, ref } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 
-const userStr = localStorage.getItem("code_user");
-if (userStr) {
-    const user = JSON.parse(userStr);
-    if (!user.userId) {
+onBeforeMount(() => {
+    const userStr = localStorage.getItem("code_user");
+    if (userStr) {
+        const user = JSON.parse(userStr);
+        if (!user.userId) {
+            location.href = "/login";
+        } else if (user.userType !== "admin") {
+            location.href = "/NoPermission";
+        }
+    } else {
         location.href = "/login";
-    } else if (user.userType !== "admin") {
-        location.href = "/NoPermission";
     }
-} else {
-    location.href = "/login";
-}
+});
 
 const data = reactive({
     username: null,
