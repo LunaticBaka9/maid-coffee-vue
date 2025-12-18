@@ -17,6 +17,7 @@
                             placeholder="请输入账号查询"
                             :prefix-icon="Search"
                             clearable
+                            @keyup.enter.native="load"
                             @clear="load"
                         ></el-input>
                         <el-input
@@ -25,6 +26,7 @@
                             placeholder="请输入名称查询"
                             :prefix-icon="Search"
                             clearable
+                            @keyup.enter.native="load"
                             @clear="load"
                         ></el-input>
                         <el-button type="primary" @click="load">查 询</el-button>

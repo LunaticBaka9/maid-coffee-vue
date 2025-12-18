@@ -122,7 +122,7 @@
                             <el-col :span="6">
                                 <div class="text-center">
                                     <p><el-button class="btn btn-primary">人员招募</el-button></p>
-                                    <P><el-button class="btn btn-primary">收藏本店</el-button></P>
+                                    <p><el-button class="btn btn-primary">收藏店面</el-button></p>
                                 </div>
                             </el-col>
                         </el-row>
@@ -130,210 +130,7 @@
                     <div class="tab-container">
                         <el-tabs v-model="activeName" type="card" stretch="top" style="background-color: white">
                             <el-tab-pane label="店铺详情" name="first">
-                                <div>
-                                    <el-carousel style="height: 700px; margin-top: 10px" :autoplay="false">
-                                        <el-carousel-item
-                                            v-for="(image, index) in shopImg"
-                                            :key="index"
-                                            style="height: auto; width: 100%"
-                                        >
-                                            <img :src="image" />
-                                        </el-carousel-item>
-                                    </el-carousel>
-                                    <div class="table-bordered">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <th width="130">讲究</th>
-                                                    <td>
-                                                        <ul>
-                                                            <li class="md-5">
-                                                                <span class="label label-primary">其一</span>
-                                                                {{ data.shopData.obs1 }}
-                                                            </li>
-                                                            <li class="md-5">
-                                                                <span class="label label-primary">其二</span>
-                                                                {{ data.shopData.obs2 }}
-                                                            </li>
-                                                            <li class="md-5">
-                                                                <span class="label label-primary">其三</span>
-                                                                {{ data.shopData.obs3 }}
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">简介</th>
-                                                    <td v-html="data.intro"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">种类</th>
-                                                    <td>{{ data.shopData.shopType }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">预计消费</th>
-                                                    <td>{{ data.shopData.price }} RMB~</td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">菜单</th>
-                                                    <td style="white-space: pre-wrap">
-                                                        {{ data.shopData.menu }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">推荐菜单</th>
-                                                    <td>
-                                                        女仆手工制作！黑月咖喱1200日元<br />
-                                                        女仆手工制作！黑月爱秘永麦酒1300日元<br />
-                                                        超级优质！农场制作的冰淇淋900日元<br />
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">电话号码</th>
-                                                    <td>{{ data.shopData.tel }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">营业时间</th>
-                                                    <td>{{ data.shopData.openTime }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">营业日</th>
-                                                    <td>
-                                                        <table class="date-table">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th>日</th>
-                                                                    <th>一</th>
-                                                                    <th>二</th>
-                                                                    <th>三</th>
-                                                                    <th>四</th>
-                                                                    <th>五</th>
-                                                                    <th>六</th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <p
-                                                                            v-if="OpenDays.Sun"
-                                                                            class="table-text-center"
-                                                                        >
-                                                                            √
-                                                                        </p>
-                                                                        <p v-else class="table-text-center">X</p>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p
-                                                                            v-if="OpenDays.Mon"
-                                                                            class="table-text-center"
-                                                                        >
-                                                                            √
-                                                                        </p>
-                                                                        <p v-else class="table-text-center">X</p>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p
-                                                                            v-if="OpenDays.Tues"
-                                                                            class="table-text-center"
-                                                                        >
-                                                                            √
-                                                                        </p>
-                                                                        <p v-else class="table-text-center">X</p>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p
-                                                                            v-if="OpenDays.Wed"
-                                                                            class="table-text-center"
-                                                                        >
-                                                                            √
-                                                                        </p>
-                                                                        <p v-else class="table-text-center">X</p>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p
-                                                                            v-if="OpenDays.Thur"
-                                                                            class="table-text-center"
-                                                                        >
-                                                                            √
-                                                                        </p>
-                                                                        <p v-else class="table-text-center">X</p>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p
-                                                                            v-if="OpenDays.Fri"
-                                                                            class="table-text-center"
-                                                                        >
-                                                                            √
-                                                                        </p>
-                                                                        <p v-else class="table-text-center">X</p>
-                                                                    </td>
-                                                                    <td>
-                                                                        <p
-                                                                            v-if="OpenDays.Sat"
-                                                                            class="table-text-center"
-                                                                        >
-                                                                            √
-                                                                        </p>
-                                                                        <p v-else class="table-text-center">X</p>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">详细分类</th>
-                                                    <td>
-                                                        {{ data.shopData.tags }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">地址</th>
-                                                    <td>{{ data.shopData.address }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">官网</th>
-                                                    <td>
-                                                        <span v-if="!data.shopData.offical">-</span>
-                                                        <span v-else>
-                                                            <a :href="data.shopData.offical">
-                                                                {{ data.shopData.offical }}
-                                                            </a>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">twitter</th>
-                                                    <td>
-                                                        <span v-if="!data.shopData.twitter">-</span>
-                                                        <span v-else>
-                                                            <a :href="data.shopData.twitter">
-                                                                {{ data.shopData.twitter }}
-                                                            </a>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">facebook</th>
-                                                    <td>
-                                                        <span v-if="!data.shopData.facebook">-</span>
-                                                        <span v-else>
-                                                            <a :href="data.shopData.facebook">
-                                                                {{ data.shopData.facebook }}
-                                                            </a>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">开店日</th>
-                                                    <td>2023年9月29日</td>
-                                                </tr>
-                                                <tr>
-                                                    <th width="130">采访</th>
-                                                    <td>接受媒体采访！</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                <information />
                             </el-tab-pane>
                             <el-tab-pane label="最新资讯" name="second">Config</el-tab-pane>
                             <el-tab-pane label="店面图片" name="third">Role</el-tab-pane>
@@ -363,14 +160,13 @@ import AsideMenu from "@/views/components/aside.vue";
 import { reactive, ref } from "vue";
 import request from "../../../utils/request";
 import router from "../../../router";
+import Information from "./information.vue";
 
 const activeName = ref("first");
 
 const data = reactive({
     user: JSON.parse(localStorage.getItem("code_user") || "{}"),
     shopId: router.currentRoute.value.query.shopId,
-    intro: "",
-    menu: "",
     shopData: [],
 });
 
@@ -389,29 +185,18 @@ const load = () => {
         if (res.code === "200") {
             data.shopData = res.data;
             data.coverPath = res.data.coverPath;
-            data.intro = res.data.intro.replace(/\n/g, "<br>");
-            data.menu = res.data.menu.replace(/\n/g, "<br>");
             OpenDays.Sun = res.data.sun;
             OpenDays.Mon = res.data.mon;
             OpenDays.Tues = res.data.wed;
             OpenDays.Thur = res.data.thur;
             OpenDays.Fri = res.data.fri;
             OpenDays.Sat = res.data.sat;
-            console.log(res.data.sun);
         } else {
             ElMessage.error(res.msg);
         }
     });
 };
 load();
-
-console.log(OpenDays.Sun);
-
-const shopImg = reactive([
-    "src/assets/img/shopTitleImage/shop_titleimage1_32005_1240.jpg",
-    "src/assets/img/shopTitleImage/shop_titleimage2_32005_1240.jpg",
-    "src/assets/img/shopTitleImage/shop_titleimage3_32005_1240.jpg",
-]);
 </script>
 
 <style scoped>
@@ -598,30 +383,5 @@ p {
 .card-body {
     margin-top: 0;
     padding: 20px;
-}
-
-.card-title-primary {
-    background-color: #ff69b4;
-    margin: 0;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 700;
-    padding: 10px 15px;
-    border-radius: 10px 10px 0 0;
-    background-image: linear-gradient(
-        135deg,
-        #ffb6c1 25%,
-        #ff69b4 25%,
-        #ff69b4 50%,
-        #ffb6c1 50%,
-        #ffb6c1 75%,
-        #ff69b4 75%,
-        #ff69b4
-    );
-    background-size: 14px 14px;
-}
-
-.card-title-primary .text {
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 </style>

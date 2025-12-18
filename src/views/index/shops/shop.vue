@@ -28,19 +28,7 @@
                             </el-card>
                         </el-col>
                     </el-row>
-                    <el-row :gutter="30" class="shop-cards">
-                        <el-col :span="4" v-for="(item, index) in shopList" :key="index">
-                            <router-link to="shopinfo">
-                                <el-card shadow="hover">
-                                    <img :src="item.image" alt="店铺图片" class="shop-image" />
-                                    <div class="shop-info">
-                                        <div>{{ item.location }}</div>
-                                        <div class="text-info">{{ item.name }}</div>
-                                    </div>
-                                </el-card>
-                            </router-link>
-                        </el-col>
-                    </el-row>
+
                     <br /><br /><br />
                 </el-main>
             </el-container>
@@ -73,93 +61,6 @@ const load = () => {
     });
 };
 load();
-
-const shopList = reactive([
-    {
-        id: 32005,
-        location: "千葉県",
-        name: "不良メイド喫茶・Bar黒月柏店",
-        image: "api/img/shop/shop_image_32005_240x240.jpg",
-    },
-    {
-        id: 15242,
-        location: "神奈川県",
-        name: "不良メイド喫茶・Bar黒月横浜本店",
-        image: "http://localhost:8081/img/shop/shop_image_15242_240x240.jpg",
-    },
-    {
-        id: 12522,
-        location: "大阪府",
-        name: "アンネット",
-        image: "http://localhost:8081/img/shop/shop_image_12522_240x240.jpg",
-    },
-    {
-        id: 12431,
-        location: "東京都",
-        name: "秋葉原☆うさぎと星のコンカフェ LittleStarRabbit",
-        image: "http://localhost:8081/img/shop/shop_image_12431_240x240.jpg",
-    },
-    {
-        id: 12424,
-        location: "東京都",
-        name: "プリティデビルメイト",
-        image: "http://localhost:8081/img/shop/shop_image_12424_240x240.jpg",
-    },
-    {
-        id: 8000,
-        location: "東京都",
-        name: "アニソン酒場 宝包-PAOPAO-",
-        image: "http://localhost:8081/img/shop/shop_image_8000_240x240.jpg",
-    },
-    {
-        id: 7823,
-        location: "神奈川県",
-        name: "アミューズメントポーカー・カジノ VALUE(バリュー)",
-        image: "http://localhost:8081/img/shop/shop_image_7823_240x240.jpg",
-    },
-    {
-        id: 7804,
-        location: "東京都",
-        name: "melfi",
-        image: "http://localhost:8081/img/shop/shop_image_7804_240x240.jpg",
-    },
-    {
-        id: 7795,
-        location: "東京都",
-        name: "がさいれ！",
-        image: "http://localhost:8081/img/shop/shop_image_7795_240x240.jpg",
-    },
-    {
-        id: 7762,
-        location: "大阪府",
-        name: "cafe&bar Funcy",
-        image: "http://localhost:8081/img/shop/shop_image_7762_240x240.jpg",
-    },
-    {
-        id: 7660,
-        location: "大阪府",
-        name: "SleepingForest (スリーピングフォレスト)",
-        image: "http://localhost:8081/img/shop/shop_image_7660_240x240.jpg",
-    },
-    {
-        id: 7400,
-        location: "福岡県",
-        name: "mirai connect (ミライコネクト)",
-        image: "http://localhost:8081/img/shop/shop_image_7400_240x240.jpg",
-    },
-    {
-        id: 7400,
-        location: "福岡県",
-        name: "mirai connect (ミライコネクト)",
-        image: "http://localhost:8081/img/shop/shop_image_7400_240x240.jpg",
-    },
-    {
-        id: 7400,
-        location: "福岡県",
-        name: "mirai connect (ミライコネクト)",
-        image: "http://localhost:8081/img/shop/shop_image_7400_240x240.jpg",
-    },
-]);
 </script>
 
 <style scoped>
@@ -252,17 +153,5 @@ const shopList = reactive([
 
 .el-col {
     margin-bottom: 20px;
-}
-
-.scrollbar-demo-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    margin: 10px;
-    text-align: center;
-    border-radius: 4px;
-    background: var(--el-color-primary-light-9);
-    color: var(--el-color-primary);
 }
 </style>

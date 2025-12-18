@@ -131,10 +131,7 @@
                                     <tbody>
                                         <tr>
                                             <td colspan="2">
-                                                <img
-                                                    src="@\assets\img\coffee\A_small_cup_of_coffee.JPG"
-                                                    class="infobox-imgae"
-                                                />
+                                                <img :src="coffee" class="infobox-imgae" />
                                                 <div class="infobox-caption">一杯咖啡</div>
                                             </td>
                                         </tr>
@@ -309,6 +306,9 @@
 <script setup name="coffee">
 import Header from "@/views/components/header.vue";
 import AsideMenu from "@/views/components/aside.vue";
+import { ref } from "vue";
+
+const coffee = ref("/api/img/wiki/coffee/A_small_cup_of_coffee.JPG");
 </script>
 
 <style scoped>

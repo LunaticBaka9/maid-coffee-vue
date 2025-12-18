@@ -17,6 +17,7 @@
                             placeholder="请输入所在店铺 ID 查询"
                             :prefix-icon="Search"
                             clearable
+                            @keyup.enter.native="load"
                             @clear="load"
                         ></el-input>
                         <el-input
@@ -25,6 +26,7 @@
                             placeholder="请输入店铺名称查询"
                             :prefix-icon="Search"
                             clearable
+                            @keyup.enter.native="load"
                             @clear="load"
                         ></el-input>
                         <el-input
@@ -33,6 +35,7 @@
                             placeholder="请输入所在地区查询"
                             :prefix-icon="Search"
                             clearable
+                            @keyup.enter.native="load"
                             @clear="load"
                         ></el-input>
                         <el-button type="primary" @click="load">查 询</el-button>
@@ -198,8 +201,9 @@ const load = () => {
 load();
 
 const reset = () => {
-    data.username = null;
-    data.name = null;
+    data.shopId = null;
+    data.shopName = null;
+    data.location = null;
     load();
 };
 
