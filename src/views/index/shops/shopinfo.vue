@@ -130,7 +130,7 @@
                     <div class="tab-container">
                         <el-tabs v-model="activeName" type="card" stretch="top" style="background-color: white">
                             <el-tab-pane label="店铺详情" name="first">
-                                <information />
+                                <information :shopData="shopData" />
                             </el-tab-pane>
                             <el-tab-pane label="最新资讯" name="second">Config</el-tab-pane>
                             <el-tab-pane label="店面图片" name="third">Role</el-tab-pane>
@@ -167,6 +167,7 @@ const activeName = ref("first");
 const data = reactive({
     user: JSON.parse(localStorage.getItem("code_user") || "{}"),
     shopId: router.currentRoute.value.query.shopId,
+    coverPath: "",
     shopData: [],
 });
 

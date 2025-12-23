@@ -59,6 +59,16 @@
                         >
                             <el-table-column type="selection" width="55" />
                             <el-table-column fixed prop="shopId" label="店铺ID" width="100" />
+                            <el-table-column label="封面">
+                                <template #default="scope">
+                                    <el-image
+                                        :src="scope.row.coverPath"
+                                        :preview-src-list="[scope.row.coverPath]"
+                                        preview-teleported
+                                        fit="cover"
+                                    />
+                                </template>
+                            </el-table-column>
                             <el-table-column prop="shopName" label="店铺名称" width="150" />
                             <el-table-column prop="location" label="所在地区" width="150" />
                             <el-table-column prop="slogn" label="slogn" show-overflow-tooltip width="150" />
@@ -82,7 +92,7 @@
                             v-model:current-page="data.pageNum"
                             v-model:page-size="data.pageSize"
                             layout="total, sizes, prev, pager, next, jumper"
-                            :page-sizes="[5, 10, 20, 30]"
+                            :page-sizes="[10, 20, 30]"
                             :total="data.total"
                             @current-change="load"
                             @size-change="load"
@@ -99,6 +109,19 @@
                         >
                             <el-form-item prop="shopName" label="名称">
                                 <el-input v-model="data.form.shopName" placeholder="店铺名称" />
+                            </el-form-item>
+                            <el-form-item label="封面">
+                                <el-upload>
+                                    <template #trigger>
+                                        <el-button type="primary">选择文件</el-button>
+                                    </template>
+                                    <template #tip>
+                                        <div class="el-upload__tip text-red">上传文件大小为250 x 250</div>
+                                    </template>
+                                </el-upload>
+                            </el-form-item>
+                            <el-form-item prop="coverPath" label="封面路径">
+                                <el-input v-model="data.form.coverPath" placeholder="店铺名称" />
                             </el-form-item>
                             <el-form-item prop="location" label="所在地区"
                                 ><el-input v-model="data.form.location" placeholder="所在地区" />
@@ -121,6 +144,18 @@
                             </el-form-item>
                             <el-form-item prop="price" label="人均价格(RMB)">
                                 <el-input v-model="data.form.price" />
+                            </el-form-item>
+                            <el-form-item prop="intro" label="商店简介">
+                                <el-input v-model="data.form.intro" type="textarea"></el-input>
+                            </el-form-item>
+                            <el-form-item prop="offical" label="官网">
+                                <el-input v-model="data.form.offical"></el-input>
+                            </el-form-item>
+                            <el-form-item prop="twitter" label="twitter">
+                                <el-input v-model="data.form.twitter"></el-input>
+                            </el-form-item>
+                            <el-form-item prop="facebook" label="facebook">
+                                <el-input v-model="data.form.facebook"></el-input>
                             </el-form-item>
                         </el-form>
                         <template #footer>
@@ -156,6 +191,7 @@ onBeforeMount(() => {
     } else {
         location.href = "/login";
     }
+    load();
 });
 
 const data = reactive({
@@ -163,7 +199,7 @@ const data = reactive({
     shopName: null,
     location: null,
     pageNum: 1,
-    pageSize: 5,
+    pageSize: 10,
     total: 6,
     tableData: [],
     formVisible: false,
@@ -193,12 +229,12 @@ const load = () => {
             if (res.code === "200") {
                 data.tableData = res.data.list;
                 data.total = res.data.total;
+                console.log(data.tableData);
             } else {
                 ElMessage.error(res.msg);
             }
         });
 };
-load();
 
 const reset = () => {
     data.shopId = null;

@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, reactive } from "vue";
 import App from "./App.vue";
 import ElementPlus from "element-plus"; // 引入 element-plus第三方UI组件库
 import "element-plus/dist/index.css"; // 引入 element-plus 样式

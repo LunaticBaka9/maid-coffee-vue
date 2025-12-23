@@ -17,6 +17,7 @@
                             </p>
                         </div>
                     </el-header>
+                    <div class="coffee-content">相关词条：</div>
                     <div class="coffee-content">
                         <el-row :gutter="20">
                             <el-col :span="16">

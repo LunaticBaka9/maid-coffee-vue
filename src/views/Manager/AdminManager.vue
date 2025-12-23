@@ -70,7 +70,7 @@
                             v-model:current-page="data.pageNum"
                             v-model:page-size="data.pageSize"
                             layout="total, sizes, prev, pager, next, jumper"
-                            :page-sizes="[5, 10, 20, 30]"
+                            :page-sizes="[10, 20, 30]"
                             :total="data.total"
                             @current-change="load"
                             @size-change="load"
@@ -140,7 +140,7 @@ const data = reactive({
     username: null,
     name: null,
     pageNum: 1,
-    pageSize: 5,
+    pageSize: 10,
     total: 6,
     tableData: [],
     formVisible: false,

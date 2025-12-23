@@ -15,19 +15,9 @@ const routeIndex = [
         component: () => import("../views/index/shops/search.vue"),
     },
     {
-        path: "/wiki/cafeShop",
-        name: "cafeShop",
-        component: () => import("../views/index/wiki/cafeShop.vue"),
-    },
-    {
         path: "/shopinfo",
         name: "shopinfo",
         component: () => import("../views/index/shops/shopinfo.vue"),
-    },
-    {
-        path: "/wiki/coffee",
-        name: "coffee",
-        component: () => import("../views/index/wiki/coffee.vue"),
     },
 ];
 

@@ -18,11 +18,15 @@
         </el-menu-item>
         <el-sub-menu index="2">
             <template #title> <span>咖啡厅</span></template>
-            <router-link to="shopintro" class="custom-link">
+            <router-link to="/wiki/cafeShop" class="custom-link">
                 <el-menu-item index="2-1">咖啡厅介绍</el-menu-item>
             </router-link>
-            <el-menu-item index="2-2">热门新店</el-menu-item>
-            <el-menu-item index="2-3">店面搜索</el-menu-item>
+            <router-link to="/shop">
+                <el-menu-item index="2-2">店面列表</el-menu-item>
+            </router-link>
+            <router-link to="/search">
+                <el-menu-item index="2-3">店面搜索</el-menu-item>
+            </router-link>
         </el-sub-menu>
         <el-sub-menu index="3">
             <template #title> <span>咖啡</span></template>

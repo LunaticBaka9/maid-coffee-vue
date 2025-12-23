@@ -17,7 +17,24 @@
                             </p>
                         </div>
                     </el-header>
-                    <el-input style="padding-left: 20px; width: 60%" size="large" placeholder="输入店铺名称"></el-input>
+                    <el-input
+                        style="padding-left: 20px; width: 40%"
+                        v-model="data.shopName"
+                        placeholder="请输入店名查询"
+                        :prefix-icon="Search"
+                        clearable
+                        @keyup.enter.native="load"
+                        @clear="load"
+                    ></el-input>
+                    <el-input
+                        style="padding-left: 20px; width: 40%"
+                        v-model="data.location"
+                        placeholder="请输入地区查询"
+                        :prefix-icon="Search"
+                        clearable
+                        @keyup.enter.native="load"
+                        @clear="load"
+                    ></el-input>
                     <el-row :gutter="30" class="shop-cards">
                         <el-col :span="4" v-for="(item, index) in data.tableData" :key="index">
                             <el-card shadow="hover" @click="navTo('/shopinfo?shopId=' + item.shopId)">
@@ -42,6 +59,7 @@ import AsideMenu from "@/views/components/aside.vue";
 import request from "../../../utils/request";
 
 const data = reactive({
+    shopName: null,
     tableData: [],
 });
 
