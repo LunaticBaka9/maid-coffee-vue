@@ -9,6 +9,11 @@ const routerWiki = [
         name: "coffee",
         component: () => import("../views/index/wiki/coffee.vue"),
     },
+    {
+        path: "/wiki/maidCafe",
+        name: "maidCafe",
+        component: () => import("../views/index/wiki/maidCofe.vue"),
+    },
 ];
 
 export default routerWiki;

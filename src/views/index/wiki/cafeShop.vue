@@ -19,7 +19,7 @@
                     </el-header>
                     <div class="coffee-content">
                         相关词条：
-                        <router-link>女仆咖啡厅</router-link>
+                        <router-link to="/wiki/maidCafe">女仆咖啡厅</router-link>
                     </div>
                     <div class="coffee-content">
                         <el-row :gutter="20">

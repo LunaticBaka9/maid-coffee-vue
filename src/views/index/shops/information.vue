@@ -187,11 +187,18 @@ const OpenDays = reactive({
     Sat: 1,
 });
 
+const shopImg = reactive([
+    "/api/img/shop/shopTitleImage/shop_titleimage1_32005_1240.jpg",
+    "/api/img/shop/shopTitleImage/shop_titleimage2_32005_1240.jpg",
+    "/api/img/shop/shopTitleImage/shop_titleimage3_32005_1240.jpg",
+]);
+
 const load = () => {
     request.get("shop/selectShopById/" + data.shopId).then((res) => {
         if (res.code === "200") {
             data.shopData = res.data;
             data.coverPath = res.data.coverPath;
+            shopImg = res.data.shopImg;
             OpenDays.Sun = res.data.sun;
             OpenDays.Mon = res.data.mon;
             OpenDays.Tues = res.data.wed;
@@ -204,12 +211,6 @@ const load = () => {
     });
 };
 load();
-
-const shopImg = reactive([
-    "src/assets/img/shopTitleImage/shop_titleimage1_32005_1240.jpg",
-    "src/assets/img/shopTitleImage/shop_titleimage2_32005_1240.jpg",
-    "src/assets/img/shopTitleImage/shop_titleimage3_32005_1240.jpg",
-]);
 </script>
 
 <style scoped>

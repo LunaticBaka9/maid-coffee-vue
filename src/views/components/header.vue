@@ -68,6 +68,7 @@ const logout = () => {
 * {
     text-decoration: none;
     font-family: Arial, sans-serif;
+    font-size: 14px;
 }
 
 .el-menu--horizontal > .el-menu-item:nth-child(1) {
@@ -84,7 +85,6 @@ const logout = () => {
 
 .el-menu-item a {
     color: #ff007f;
-    font-size: 16px;
     display: inline-block;
     padding: 12px;
     padding-right: 12px;

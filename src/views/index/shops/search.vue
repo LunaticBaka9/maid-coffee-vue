@@ -46,6 +46,8 @@
                             </el-card>
                         </el-col>
                     </el-row>
+
+                    <br /><br /><br />
                 </el-main>
             </el-container>
         </el-container>
@@ -60,6 +62,7 @@ import request from "../../../utils/request";
 
 const data = reactive({
     shopName: null,
+    pageSize: 100,
     tableData: [],
 });
 

@@ -69,7 +69,7 @@
                                     style="width: 100%; margin: 20px 0"
                                     @click="register"
                                 >
-                                    登 录
+                                    注 册
                                 </el-button>
                             </div>
                             <div style="text-align: right">
