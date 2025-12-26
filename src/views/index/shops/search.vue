@@ -1,63 +1,48 @@
 <template>
-    <div class="common-layout" style="overflow: hidden">
-        <el-container>
-            <el-header height="4rem" class="header">
-                <Header></Header>
-            </el-header>
-            <el-container>
-                <el-aside width="12rem">
-                    <AsideMenu></AsideMenu>
-                </el-aside>
+    <el-main>
+        <el-header>
+            <div class="header">
+                <p class="card-title-primary">
+                    <span class="text">搜索店面</span>
+                </p>
+            </div>
+        </el-header>
+        <el-input
+            style="padding-left: 20px; width: 40%"
+            v-model="data.shopName"
+            placeholder="请输入店名查询"
+            :prefix-icon="Search"
+            clearable
+            @keyup.enter.native="load"
+            @clear="load"
+        ></el-input>
+        <el-input
+            style="padding-left: 20px; width: 40%"
+            v-model="data.location"
+            placeholder="请输入地区查询"
+            :prefix-icon="Search"
+            clearable
+            @keyup.enter.native="load"
+            @clear="load"
+        ></el-input>
+        <el-row :gutter="30" class="shop-cards">
+            <el-col :span="4" v-for="(item, index) in data.tableData" :key="index">
+                <el-card shadow="hover" @click="navTo('/shopinfo?shopId=' + item.shopId)">
+                    <img :src="item.coverPath" alt="店铺图片" class="shop-image" />
+                    <div class="shop-info">
+                        <div>{{ item.location }}</div>
+                        <div class="text-info">{{ item.shopName }}</div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
 
-                <el-main>
-                    <el-header>
-                        <div class="header">
-                            <p class="card-title-primary">
-                                <span class="text">搜索店面</span>
-                            </p>
-                        </div>
-                    </el-header>
-                    <el-input
-                        style="padding-left: 20px; width: 40%"
-                        v-model="data.shopName"
-                        placeholder="请输入店名查询"
-                        :prefix-icon="Search"
-                        clearable
-                        @keyup.enter.native="load"
-                        @clear="load"
-                    ></el-input>
-                    <el-input
-                        style="padding-left: 20px; width: 40%"
-                        v-model="data.location"
-                        placeholder="请输入地区查询"
-                        :prefix-icon="Search"
-                        clearable
-                        @keyup.enter.native="load"
-                        @clear="load"
-                    ></el-input>
-                    <el-row :gutter="30" class="shop-cards">
-                        <el-col :span="4" v-for="(item, index) in data.tableData" :key="index">
-                            <el-card shadow="hover" @click="navTo('/shopinfo?shopId=' + item.shopId)">
-                                <img :src="item.coverPath" alt="店铺图片" class="shop-image" />
-                                <div class="shop-info">
-                                    <div>{{ item.location }}</div>
-                                    <div class="text-info">{{ item.shopName }}</div>
-                                </div>
-                            </el-card>
-                        </el-col>
-                    </el-row>
-
-                    <br /><br /><br />
-                </el-main>
-            </el-container>
-        </el-container>
-    </div>
+        <br /><br /><br />
+    </el-main>
 </template>
 
 <script setup>
 import { reactive, ref } from "vue";
-import Header from "@/views/components/header.vue";
-import AsideMenu from "@/views/components/aside.vue";
 import request from "../../../utils/request";
 
 const data = reactive({

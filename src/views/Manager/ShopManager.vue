@@ -1,180 +1,161 @@
 <template>
-    <div class="common-layout" style="overflow: hidden">
-        <el-container>
-            <el-header height="4rem" class="header">
-                <Header />
-            </el-header>
-            <el-container>
-                <el-aside width="12rem">
-                    <AsideMenu />
-                </el-aside>
+    <el-main>
+        <div class="card" style="margin-bottom: 5px">
+            <el-input
+                style="width: 260px; margin-right: 5px"
+                v-model="data.shopId"
+                placeholder="请输入所在店铺 ID 查询"
+                :prefix-icon="Search"
+                clearable
+                @keyup.enter.native="load"
+                @clear="load"
+            ></el-input>
+            <el-input
+                style="width: 260px; margin-right: 5px"
+                v-model="data.shopName"
+                placeholder="请输入店铺名称查询"
+                :prefix-icon="Search"
+                clearable
+                @keyup.enter.native="load"
+                @clear="load"
+            ></el-input>
+            <el-input
+                style="width: 260px; margin-right: 5px"
+                v-model="data.location"
+                placeholder="请输入所在地区查询"
+                :prefix-icon="Search"
+                clearable
+                @keyup.enter.native="load"
+                @clear="load"
+            ></el-input>
+            <el-button type="primary" @click="load">查 询</el-button>
+            <el-button @click="reset">重 置</el-button>
+        </div>
 
-                <el-main>
-                    <div class="card" style="margin-bottom: 5px">
-                        <el-input
-                            style="width: 260px; margin-right: 5px"
-                            v-model="data.shopId"
-                            placeholder="请输入所在店铺 ID 查询"
-                            :prefix-icon="Search"
-                            clearable
-                            @keyup.enter.native="load"
-                            @clear="load"
-                        ></el-input>
-                        <el-input
-                            style="width: 260px; margin-right: 5px"
-                            v-model="data.shopName"
-                            placeholder="请输入店铺名称查询"
-                            :prefix-icon="Search"
-                            clearable
-                            @keyup.enter.native="load"
-                            @clear="load"
-                        ></el-input>
-                        <el-input
-                            style="width: 260px; margin-right: 5px"
-                            v-model="data.location"
-                            placeholder="请输入所在地区查询"
-                            :prefix-icon="Search"
-                            clearable
-                            @keyup.enter.native="load"
-                            @clear="load"
-                        ></el-input>
-                        <el-button type="primary" @click="load">查 询</el-button>
-                        <el-button @click="reset">重 置</el-button>
-                    </div>
+        <div class="card" style="margin-bottom: 5px">
+            <el-button type="primary" @click="handleAdd">新 增</el-button>
+            <el-button type="danger" @click="deleteBatch">批量删除</el-button>
+            <el-button type="success">批量导入</el-button>
+            <el-button type="info">批量导出</el-button>
+        </div>
 
-                    <div class="card" style="margin-bottom: 5px">
-                        <el-button type="primary" @click="handleAdd">新 增</el-button>
-                        <el-button type="danger" @click="deleteBatch">批量删除</el-button>
-                        <el-button type="success">批量导入</el-button>
-                        <el-button type="info">批量导出</el-button>
-                    </div>
-
-                    <div class="card" style="margin-bottom: 5px">
-                        <el-table
-                            border
-                            :data="data.tableData"
-                            style="width: 100%"
-                            @selection-change="handleSelectionChange"
-                            :header-cell-style="{ color: '#333', backgroundColor: '#ffb6c1' }"
-                        >
-                            <el-table-column type="selection" width="55" />
-                            <el-table-column fixed prop="shopId" label="店铺ID" width="100" />
-                            <el-table-column label="封面">
-                                <template #default="scope">
-                                    <el-image
-                                        :src="scope.row.coverPath"
-                                        :preview-src-list="[scope.row.coverPath]"
-                                        preview-teleported
-                                        fit="cover"
-                                    />
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="shopName" label="店铺名称" width="150" />
-                            <el-table-column prop="location" label="所在地区" width="150" />
-                            <el-table-column prop="slogn" label="slogn" show-overflow-tooltip width="150" />
-                            <el-table-column prop="tel" label="电话" width="150" />
-                            <el-table-column prop="openTime" label="营业时间" show-overflow-tooltip width="150" />
-                            <el-table-column prop="price" label="人均价格(RMB)" width="130" />
-                            <el-table-column prop="intro" label="店铺介绍" width="150" show-overflow-tooltip />
-                            <el-table-column prop="offical" label="官网" show-overflow-tooltip width="150" />
-                            <el-table-column prop="twitter" label="twitter" show-overflow-tooltip width="150" />
-                            <el-table-column prop="facebook" label="facebook" show-overflow-tooltip width="150" />
-                            <el-table-column fixed="right" label="操作" min-width="150">
-                                <template #default="scope">
-                                    <el-button size="small" @click="handleEidor(scope.row)"> 修改 </el-button>
-                                    <el-button size="small" type="danger" @click="del(scope.row)"> 删除 </el-button>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-                    </div>
-                    <div class="card">
-                        <el-pagination
-                            v-model:current-page="data.pageNum"
-                            v-model:page-size="data.pageSize"
-                            layout="total, sizes, prev, pager, next, jumper"
-                            :page-sizes="[10, 20, 30]"
-                            :total="data.total"
-                            @current-change="load"
-                            @size-change="load"
+        <div class="card" style="margin-bottom: 5px">
+            <el-table
+                border
+                :data="data.tableData"
+                style="width: 100%"
+                @selection-change="handleSelectionChange"
+                :header-cell-style="{ color: '#333', backgroundColor: '#ffb6c1' }"
+            >
+                <el-table-column type="selection" width="55" />
+                <el-table-column fixed prop="shopId" label="店铺ID" width="100" />
+                <el-table-column label="封面">
+                    <template #default="scope">
+                        <el-image
+                            :src="scope.row.coverPath"
+                            :preview-src-list="[scope.row.coverPath]"
+                            preview-teleported
+                            fit="cover"
                         />
-                    </div>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="shopName" label="店铺名称" width="150" />
+                <el-table-column prop="location" label="所在地区" width="150" />
+                <el-table-column prop="slogn" label="slogn" show-overflow-tooltip width="150" />
+                <el-table-column prop="tel" label="电话" width="150" />
+                <el-table-column prop="openTime" label="营业时间" show-overflow-tooltip width="150" />
+                <el-table-column prop="price" label="人均价格(RMB)" width="130" />
+                <el-table-column prop="intro" label="店铺介绍" width="150" show-overflow-tooltip />
+                <el-table-column prop="offical" label="官网" show-overflow-tooltip width="150" />
+                <el-table-column prop="twitter" label="twitter" show-overflow-tooltip width="150" />
+                <el-table-column prop="facebook" label="facebook" show-overflow-tooltip width="150" />
+                <el-table-column fixed="right" label="操作" min-width="150">
+                    <template #default="scope">
+                        <el-button size="small" @click="handleEidor(scope.row)"> 修改 </el-button>
+                        <el-button size="small" type="danger" @click="del(scope.row)"> 删除 </el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </div>
+        <div class="card">
+            <el-pagination
+                v-model:current-page="data.pageNum"
+                v-model:page-size="data.pageSize"
+                layout="total, sizes, prev, pager, next, jumper"
+                :page-sizes="[10, 20, 30]"
+                :total="data.total"
+                @current-change="load"
+                @size-change="load"
+            />
+        </div>
 
-                    <el-dialog v-model="data.formVisible" title="店铺信息" width="600" destroy-on-close>
-                        <el-form
-                            ref="formRef"
-                            :model="data.form"
-                            :rules="data.rules"
-                            label-width="auto"
-                            style="padding: 20px 30px; max-width: auto"
-                        >
-                            <el-form-item prop="shopName" label="名称">
-                                <el-input v-model="data.form.shopName" placeholder="店铺名称" />
-                            </el-form-item>
-                            <el-form-item label="封面">
-                                <el-upload>
-                                    <template #trigger>
-                                        <el-button type="primary">选择文件</el-button>
-                                    </template>
-                                    <template #tip>
-                                        <div class="el-upload__tip text-red">上传文件大小为250 x 250</div>
-                                    </template>
-                                </el-upload>
-                            </el-form-item>
-                            <el-form-item prop="coverPath" label="封面路径">
-                                <el-input v-model="data.form.coverPath" placeholder="店铺名称" />
-                            </el-form-item>
-                            <el-form-item prop="location" label="所在地区"
-                                ><el-input v-model="data.form.location" placeholder="所在地区" />
-                            </el-form-item>
-                            <el-form-item prop="address" label="地址">
-                                <el-input
-                                    v-model="data.form.address"
-                                    type="textarea"
-                                    placeholder="请填写商店具体地址"
-                                />
-                            </el-form-item>
-                            <el-form-item prop="slogn" label="slogn">
-                                <el-input v-model="data.form.slogn" type="textarea" />
-                            </el-form-item>
-                            <el-form-item prop="openTime" label="营业时间">
-                                <el-input v-model="data.form.openTime" type="textarea" />
-                            </el-form-item>
-                            <el-form-item prop="tel" label="电话">
-                                <el-input v-model="data.form.tel" />
-                            </el-form-item>
-                            <el-form-item prop="price" label="人均价格(RMB)">
-                                <el-input v-model="data.form.price" />
-                            </el-form-item>
-                            <el-form-item prop="intro" label="商店简介">
-                                <el-input v-model="data.form.intro" type="textarea"></el-input>
-                            </el-form-item>
-                            <el-form-item prop="offical" label="官网">
-                                <el-input v-model="data.form.offical"></el-input>
-                            </el-form-item>
-                            <el-form-item prop="twitter" label="twitter">
-                                <el-input v-model="data.form.twitter"></el-input>
-                            </el-form-item>
-                            <el-form-item prop="facebook" label="facebook">
-                                <el-input v-model="data.form.facebook"></el-input>
-                            </el-form-item>
-                        </el-form>
-                        <template #footer>
-                            <div class="dialog-footer">
-                                <el-button @click="data.formVisible = false">取消</el-button>
-                                <el-button type="primary" @click="save"> 保存 </el-button>
-                            </div>
+        <el-dialog v-model="data.formVisible" title="店铺信息" width="600" destroy-on-close>
+            <el-form
+                ref="formRef"
+                :model="data.form"
+                :rules="data.rules"
+                label-width="auto"
+                style="padding: 20px 30px; max-width: auto"
+            >
+                <el-form-item prop="shopName" label="名称">
+                    <el-input v-model="data.form.shopName" placeholder="店铺名称" />
+                </el-form-item>
+                <el-form-item label="封面">
+                    <el-upload>
+                        <template #trigger>
+                            <el-button type="primary">选择文件</el-button>
                         </template>
-                    </el-dialog>
-                    <br /><br /><br /><br />
-                </el-main>
-            </el-container>
-        </el-container>
-    </div>
+                        <template #tip>
+                            <div class="el-upload__tip text-red">上传文件大小为250 x 250</div>
+                        </template>
+                    </el-upload>
+                </el-form-item>
+                <el-form-item prop="coverPath" label="封面路径">
+                    <el-input v-model="data.form.coverPath" placeholder="店铺名称" />
+                </el-form-item>
+                <el-form-item prop="location" label="所在地区"
+                    ><el-input v-model="data.form.location" placeholder="所在地区" />
+                </el-form-item>
+                <el-form-item prop="address" label="地址">
+                    <el-input v-model="data.form.address" type="textarea" placeholder="请填写商店具体地址" />
+                </el-form-item>
+                <el-form-item prop="slogn" label="slogn">
+                    <el-input v-model="data.form.slogn" type="textarea" />
+                </el-form-item>
+                <el-form-item prop="openTime" label="营业时间">
+                    <el-input v-model="data.form.openTime" type="textarea" />
+                </el-form-item>
+                <el-form-item prop="tel" label="电话">
+                    <el-input v-model="data.form.tel" />
+                </el-form-item>
+                <el-form-item prop="price" label="人均价格(RMB)">
+                    <el-input v-model="data.form.price" />
+                </el-form-item>
+                <el-form-item prop="intro" label="商店简介">
+                    <el-input v-model="data.form.intro" type="textarea"></el-input>
+                </el-form-item>
+                <el-form-item prop="offical" label="官网">
+                    <el-input v-model="data.form.offical"></el-input>
+                </el-form-item>
+                <el-form-item prop="twitter" label="twitter">
+                    <el-input v-model="data.form.twitter"></el-input>
+                </el-form-item>
+                <el-form-item prop="facebook" label="facebook">
+                    <el-input v-model="data.form.facebook"></el-input>
+                </el-form-item>
+            </el-form>
+            <template #footer>
+                <div class="dialog-footer">
+                    <el-button @click="data.formVisible = false">取消</el-button>
+                    <el-button type="primary" @click="save"> 保存 </el-button>
+                </div>
+            </template>
+        </el-dialog>
+        <br /><br /><br /><br />
+    </el-main>
 </template>
 
 <script setup name="ShopManager">
-import Header from "@/views/components/header.vue";
-import AsideMenu from "@/views/components/aside.vue";
 import request from "@/utils/request.js";
 import { onBeforeMount, reactive, ref } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";

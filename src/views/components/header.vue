@@ -30,7 +30,7 @@
         </el-sub-menu>
         <el-sub-menu index="3">
             <template #title> <span>咖啡</span></template>
-            <router-link to="coffee" class="custom-link">
+            <router-link to="/wiki/coffee" class="custom-link">
                 <el-menu-item index="3-1">咖啡简介</el-menu-item>
             </router-link>
 
@@ -43,7 +43,7 @@
                     {{ data.user?.name }}
                 </span>
             </template>
-            <router-link to="login">
+            <router-link to="/login">
                 <el-menu-item index="4-1"> 登录 </el-menu-item>
             </router-link>
             <el-menu-item index="4-2" @click="logout">退出登录</el-menu-item>

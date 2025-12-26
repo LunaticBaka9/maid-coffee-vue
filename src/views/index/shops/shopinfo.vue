@@ -1,162 +1,147 @@
 <template>
-    <div class="common-layout" style="overflow: hidden">
-        <el-container>
-            <el-header height="4rem" class="header">
-                <Header />
-            </el-header>
-            <el-container>
-                <el-aside width="12rem">
-                    <AsideMenu />
-                </el-aside>
-
-                <el-main>
-                    <el-header>
-                        <div class="card-header">
-                            <p class="card-title-primary">
-                                <span class="text">店面介绍</span>
-                            </p>
-                        </div>
-                    </el-header>
-                    <div class="card-body">
-                        <el-row :gutter="20">
-                            <el-col :span="4">
-                                <img :src="data.shopData.coverPath" class="cover" />
-                            </el-col>
-                            <el-col :span="14">
-                                <p class="mb-1">
-                                    {{ data.shopData.slogn }}
-                                </p>
-                                <p class="mb-1">{{ data.shopData.shopType }}</p>
-                                <h1>
-                                    <a class="shop-name" href="#">{{ data.shopData.shopName }}</a>
-                                </h1>
-                            </el-col>
-                            <el-col :span="6" class="col-3">
-                                <p class="text-center">
-                                    <a class="font-weight-bold" style="font-size: 22px">TEL：{{ data.shopData.tel }}</a>
-                                </p>
-                                <p class="text-center">お気軽にお問わせくださいませ♪</p>
-                                <p class="text-center">
-                                    <el-button type="warning" style="width: 100%" class="btn">拨打电话</el-button>
-                                </p>
-                            </el-col>
-                        </el-row>
-                        <el-divider border-style="dashed" class="divider" />
-                        <el-row :gutter="20">
-                            <el-col :span="8">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th><span class="label-pill mb-2">预计消费</span></th>
-                                            <td>{{ data.shopData.price }} RMB~</td>
-                                        </tr>
-                                        <tr>
-                                            <th><span class="label-pill mb-2">营业时间</span></th>
-                                            <td>{{ data.shopData.openTime }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th><span class="label-pill mb-2">营业日</span></th>
-                                            <td>
-                                                <table class="date-table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th>日</th>
-                                                            <th>一</th>
-                                                            <th>二</th>
-                                                            <th>三</th>
-                                                            <th>四</th>
-                                                            <th>五</th>
-                                                            <th>六</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <p v-if="OpenDays.Sun" class="table-text-center">√</p>
-                                                                <p v-else class="table-text-center">X</p>
-                                                            </td>
-                                                            <td>
-                                                                <p v-if="OpenDays.Mon" class="table-text-center">√</p>
-                                                                <p v-else class="table-text-center">X</p>
-                                                            </td>
-                                                            <td>
-                                                                <p v-if="OpenDays.Tues" class="table-text-center">√</p>
-                                                                <p v-else class="table-text-center">X</p>
-                                                            </td>
-                                                            <td>
-                                                                <p v-if="OpenDays.Wed" class="table-text-center">√</p>
-                                                                <p v-else class="table-text-center">X</p>
-                                                            </td>
-                                                            <td>
-                                                                <p v-if="OpenDays.Thur" class="table-text-center">√</p>
-                                                                <p v-else class="table-text-center">X</p>
-                                                            </td>
-                                                            <td>
-                                                                <p v-if="OpenDays.Fri" class="table-text-center">√</p>
-                                                                <p v-else class="table-text-center">X</p>
-                                                            </td>
-                                                            <td>
-                                                                <p v-if="OpenDays.Sat" class="table-text-center">√</p>
-                                                                <p v-else class="table-text-center">X</p>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </el-col>
-                            <el-col :span="10">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th><span class="label-pill mb-2">地址</span></th>
-                                            <td>{{ data.shopData.address }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th><span class="label-pill mb-2">最近的地铁</span></th>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </el-col>
-                            <el-col :span="6">
-                                <div class="text-center">
-                                    <p><el-button class="btn btn-primary">人员招募</el-button></p>
-                                    <p><el-button class="btn btn-primary">收藏店面</el-button></p>
-                                </div>
-                            </el-col>
-                        </el-row>
+    <el-main>
+        <el-header>
+            <div class="card-header">
+                <p class="card-title-primary">
+                    <span class="text">店面介绍</span>
+                </p>
+            </div>
+        </el-header>
+        <div class="card-body">
+            <el-row :gutter="20">
+                <el-col :span="4">
+                    <img :src="data.shopData.coverPath" class="cover" />
+                </el-col>
+                <el-col :span="14">
+                    <p class="mb-1">
+                        {{ data.shopData.slogn }}
+                    </p>
+                    <p class="mb-1">{{ data.shopData.shopType }}</p>
+                    <h1>
+                        <a class="shop-name" href="#">{{ data.shopData.shopName }}</a>
+                    </h1>
+                </el-col>
+                <el-col :span="6" class="col-3">
+                    <p class="text-center">
+                        <a class="font-weight-bold" style="font-size: 22px">TEL：{{ data.shopData.tel }}</a>
+                    </p>
+                    <p class="text-center">お気軽にお問わせくださいませ♪</p>
+                    <p class="text-center">
+                        <el-button type="warning" style="width: 100%" class="btn">拨打电话</el-button>
+                    </p>
+                </el-col>
+            </el-row>
+            <el-divider border-style="dashed" class="divider" />
+            <el-row :gutter="20">
+                <el-col :span="8">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th><span class="label-pill mb-2">预计消费</span></th>
+                                <td>{{ data.shopData.price }} RMB~</td>
+                            </tr>
+                            <tr>
+                                <th><span class="label-pill mb-2">营业时间</span></th>
+                                <td>{{ data.shopData.openTime }}</td>
+                            </tr>
+                            <tr>
+                                <th><span class="label-pill mb-2">营业日</span></th>
+                                <td>
+                                    <table class="date-table">
+                                        <tbody>
+                                            <tr>
+                                                <th>日</th>
+                                                <th>一</th>
+                                                <th>二</th>
+                                                <th>三</th>
+                                                <th>四</th>
+                                                <th>五</th>
+                                                <th>六</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p v-if="OpenDays.Sun" class="table-text-center">√</p>
+                                                    <p v-else class="table-text-center">X</p>
+                                                </td>
+                                                <td>
+                                                    <p v-if="OpenDays.Mon" class="table-text-center">√</p>
+                                                    <p v-else class="table-text-center">X</p>
+                                                </td>
+                                                <td>
+                                                    <p v-if="OpenDays.Tues" class="table-text-center">√</p>
+                                                    <p v-else class="table-text-center">X</p>
+                                                </td>
+                                                <td>
+                                                    <p v-if="OpenDays.Wed" class="table-text-center">√</p>
+                                                    <p v-else class="table-text-center">X</p>
+                                                </td>
+                                                <td>
+                                                    <p v-if="OpenDays.Thur" class="table-text-center">√</p>
+                                                    <p v-else class="table-text-center">X</p>
+                                                </td>
+                                                <td>
+                                                    <p v-if="OpenDays.Fri" class="table-text-center">√</p>
+                                                    <p v-else class="table-text-center">X</p>
+                                                </td>
+                                                <td>
+                                                    <p v-if="OpenDays.Sat" class="table-text-center">√</p>
+                                                    <p v-else class="table-text-center">X</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </el-col>
+                <el-col :span="10">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th><span class="label-pill mb-2">地址</span></th>
+                                <td>{{ data.shopData.address }}</td>
+                            </tr>
+                            <tr>
+                                <th><span class="label-pill mb-2">最近的地铁</span></th>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </el-col>
+                <el-col :span="6">
+                    <div class="text-center">
+                        <p><el-button class="btn btn-primary">人员招募</el-button></p>
+                        <p><el-button class="btn btn-primary">收藏店面</el-button></p>
                     </div>
-                    <div class="tab-container">
-                        <el-tabs v-model="activeName" type="card" stretch="top" style="background-color: white">
-                            <el-tab-pane label="店铺详情" name="first">
-                                <information :shopData="shopData" />
-                            </el-tab-pane>
-                            <el-tab-pane label="最新资讯" name="second">Config</el-tab-pane>
-                            <el-tab-pane label="店面图片" name="third">Role</el-tab-pane>
-                            <el-tab-pane label="其他" name="fourth">Task</el-tab-pane>
-                        </el-tabs>
-                    </div>
-                    <el-header>
-                        <div class="card-header">
-                            <p class="card-title-primary">
-                                <span class="text">访客评论</span>
-                            </p>
-                        </div>
-                        <div>
-                            <h1>超绝功能尚未学会（</h1>
-                        </div>
-                    </el-header>
-                    <br /><br /><br /><br /><br /><br /><br />
-                </el-main>
-            </el-container>
-        </el-container>
-    </div>
+                </el-col>
+            </el-row>
+        </div>
+        <div class="tab-container">
+            <el-tabs v-model="activeName" type="card" stretch="top" style="background-color: white">
+                <el-tab-pane label="店铺详情" name="first">
+                    <information />
+                </el-tab-pane>
+                <el-tab-pane label="最新资讯" name="second">Config</el-tab-pane>
+                <el-tab-pane label="店面图片" name="third">Role</el-tab-pane>
+                <el-tab-pane label="其他" name="fourth">Task</el-tab-pane>
+            </el-tabs>
+        </div>
+        <el-header>
+            <div class="card-header">
+                <p class="card-title-primary">
+                    <span class="text">访客评论</span>
+                </p>
+            </div>
+            <div>
+                <h1>超绝功能尚未学会（</h1>
+            </div>
+        </el-header>
+        <br /><br /><br /><br /><br /><br /><br />
+    </el-main>
 </template>
 
 <script setup name="shopinfo">
-import Header from "@/views/components/header.vue";
-import AsideMenu from "@/views/components/aside.vue";
 import { reactive, ref } from "vue";
 import request from "../../../utils/request";
 import router from "../../../router";

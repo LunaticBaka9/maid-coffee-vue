@@ -198,13 +198,14 @@ const load = () => {
         if (res.code === "200") {
             data.shopData = res.data;
             data.coverPath = res.data.coverPath;
-            shopImg = res.data.shopImg;
+            data.shopData.shopImg = res.data.shopImg;
             OpenDays.Sun = res.data.sun;
             OpenDays.Mon = res.data.mon;
             OpenDays.Tues = res.data.wed;
             OpenDays.Thur = res.data.thur;
             OpenDays.Fri = res.data.fri;
             OpenDays.Sat = res.data.sat;
+            console.log(data.shopData.shopImg);
         } else {
             ElMessage.error(res.msg);
         }

@@ -1,65 +1,39 @@
 <template>
-    <div class="common-layout" style="overflow: hidden">
-        <el-container>
-            <el-header height="4rem" class="header">
-                <Header></Header>
-            </el-header>
-            <el-container>
-                <el-aside width="12rem">
-                    <AsideMenu />
-                </el-aside>
-
-                <el-main class="login-card">
-                    <div
-                        style="width: 350px; height: 400px; background-color: #ffff; border-radius: 5px; padding: 20px"
-                    >
-                        <el-form ref="formRef" :model="data.form" :rules="data.rules" style="padding: 20px 30px 10px 0">
-                            <div style="margin: 20px 0; text-align: center; font-weight: bold; font-size: 24px">
-                                登 录
-                            </div>
-                            <el-form-item prop="username">
-                                <el-input
-                                    v-model="data.form.username"
-                                    autocomplete="off"
-                                    prefix-icon="User"
-                                    size="large"
-                                    placeholder="请输入账号"
-                                />
-                            </el-form-item>
-                            <el-form-item prop="password">
-                                <el-input
-                                    v-model="data.form.password"
-                                    autocomplete="off"
-                                    show-password="true"
-                                    size="large"
-                                    prefix-icon="Lock"
-                                    placeholder="请输入密码"
-                                />
-                            </el-form-item>
-                            <div>
-                                <el-button
-                                    size="large"
-                                    type="primary"
-                                    style="width: 100%; margin: 20px 0"
-                                    @click="login"
-                                >
-                                    登 录
-                                </el-button>
-                            </div>
-                            <div style="text-align: right">
-                                还没有账号？请<a style="color: #274afa" href="/register">注册</a>
-                            </div>
-                        </el-form>
-                    </div>
-                </el-main>
-            </el-container>
-        </el-container>
-    </div>
+    <el-main class="login-card">
+        <div style="width: 350px; height: 400px; background-color: #ffff; border-radius: 5px; padding: 20px">
+            <el-form ref="formRef" :model="data.form" :rules="data.rules" style="padding: 20px 30px 10px 0">
+                <div style="margin: 20px 0; text-align: center; font-weight: bold; font-size: 24px">登 录</div>
+                <el-form-item prop="username">
+                    <el-input
+                        v-model="data.form.username"
+                        autocomplete="off"
+                        prefix-icon="User"
+                        size="large"
+                        placeholder="请输入账号"
+                    />
+                </el-form-item>
+                <el-form-item prop="password">
+                    <el-input
+                        v-model="data.form.password"
+                        autocomplete="off"
+                        show-password="true"
+                        size="large"
+                        prefix-icon="Lock"
+                        placeholder="请输入密码"
+                    />
+                </el-form-item>
+                <div>
+                    <el-button size="large" type="primary" style="width: 100%; margin: 20px 0" @click="login">
+                        登 录
+                    </el-button>
+                </div>
+                <div style="text-align: right">还没有账号？请<a style="color: #274afa" href="/register">注册</a></div>
+            </el-form>
+        </div>
+    </el-main>
 </template>
 
 <script setup name="login" lang="ts">
-import Header from "@/views/components/header.vue";
-import AsideMenu from "@/views/components/aside.vue";
 import { reactive, ref } from "vue";
 import request from "../../utils/request";
 import { ElMessage } from "element-plus";

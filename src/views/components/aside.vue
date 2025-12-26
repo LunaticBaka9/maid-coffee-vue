@@ -27,7 +27,7 @@
                     <el-menu-item index="2-1">咖啡种类</el-menu-item>
                 </router-link>
                 <router-link to="" class="custom-link">
-                    <el-menu-item index="2-2">咖啡</el-menu-item>
+                    <el-menu-item index="2-2">咖啡文化</el-menu-item>
                 </router-link>
             </el-menu-item-group>
             <router-link to="" class="custom-link">
