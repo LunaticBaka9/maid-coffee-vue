@@ -101,17 +101,25 @@
                     <el-input v-model="data.form.shopName" placeholder="店铺名称" />
                 </el-form-item>
                 <el-form-item label="封面">
-                    <el-upload>
+                    <el-upload
+                        :action="uploadUrl"
+                        name="file"
+                        :data="uploadData"
+                        :before-upload="beforeUpload"
+                        :on-success="handleUploadSuccess"
+                        :show-file-list="false"
+                        accept="image/*"
+                    >
                         <template #trigger>
                             <el-button type="primary">选择文件</el-button>
                         </template>
                         <template #tip>
-                            <div class="el-upload__tip text-red">上传文件大小为250 x 250</div>
+                            <div class="el-upload__tip text-red">上传图片尺寸应为 240 x 240 像素</div>
                         </template>
                     </el-upload>
-                </el-form-item>
-                <el-form-item prop="coverPath" label="封面路径">
-                    <el-input v-model="data.form.coverPath" placeholder="店铺名称" />
+                    <div v-if="data.form.coverPath" style="margin-top: 8px">
+                        <el-image :src="data.form.coverPath" style="width: 80px; height: 80px; object-fit: cover" />
+                    </div>
                 </el-form-item>
                 <el-form-item prop="location" label="所在地区"
                     ><el-input v-model="data.form.location" placeholder="所在地区" />
@@ -311,6 +319,54 @@ const deleteBatch = () => {
             });
         })
         .catch((err) => {});
+};
+
+const uploadUrl = "/api/upload/shop-cover";
+
+const uploadData = () => {
+    return { shopId: data.form.shopId };
+};
+
+const beforeUpload = (file) => {
+    return new Promise((resolve, reject) => {
+        if (!file.type.startsWith("image/")) {
+            ElMessage.error("请选择图片文件");
+            return reject(false);
+        }
+        if (!data.form.shopId) {
+            ElMessage.warning("请先保存或填写 shopId 后再上传封面");
+            return reject(false);
+        }
+        const url = URL.createObjectURL(file);
+        const img = new Image();
+        img.onload = () => {
+            URL.revokeObjectURL(url);
+            if (img.naturalWidth === 240 && img.naturalHeight === 240) {
+                resolve(true);
+            } else {
+                ElMessage.error("图片尺寸需为 240 x 240 像素");
+                reject(false);
+            }
+        };
+        img.onerror = () => {
+            URL.revokeObjectURL(url);
+            ElMessage.error("无法读取图片");
+            reject(false);
+        };
+        img.src = url;
+    });
+};
+
+const handleUploadSuccess = (res, file) => {
+    // 后端返回完整 URL 字符串
+    const url = typeof res === "string" ? res : res.url || res.data || "";
+    if (url) {
+        data.form.coverPath = url;
+        ElMessage.success("上传成功");
+        // 如果想刷新表格列表，可调用 load()
+    } else {
+        ElMessage.error("上传失败，服务器未返回 URL");
+    }
 };
 
 const save = () => {

@@ -43,10 +43,14 @@
                     {{ data.user?.name }}
                 </span>
             </template>
-            <router-link to="/login">
-                <el-menu-item index="4-1"> 登录 </el-menu-item>
-            </router-link>
-            <el-menu-item index="4-2" @click="logout">退出登录</el-menu-item>
+            <span v-if="!data.user.name">
+                <router-link to="/login">
+                    <el-menu-item index="4-1"> 登录 </el-menu-item>
+                </router-link>
+            </span>
+            <span v-else>
+                <el-menu-item index="4-2" @click="logout">退出登录</el-menu-item>
+            </span>
         </el-sub-menu>
     </el-menu>
 </template>

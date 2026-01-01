@@ -23,19 +23,19 @@
                 </el-menu-item>
             </router-link>
             <el-menu-item-group title="">
-                <router-link to="" class="custom-link">
+                <router-link to="/wiki/coffeeKind" class="custom-link">
                     <el-menu-item index="2-1">咖啡种类</el-menu-item>
                 </router-link>
-                <router-link to="" class="custom-link">
+                <router-link to="/wiki/coffeeCulture" class="custom-link">
                     <el-menu-item index="2-2">咖啡文化</el-menu-item>
                 </router-link>
             </el-menu-item-group>
-            <router-link to="" class="custom-link">
+            <router-link to="" class="custom-link" v-if="data.user.name">
                 <el-menu-item class="card-title-primary">
                     <span class="text">管理</span>
                 </el-menu-item>
             </router-link>
-            <el-menu-item-group>
+            <el-menu-item-group v-if="data.user.name">
                 <router-link to="/shopManager" class="custom-link">
                     <el-menu-item index="3-1">店面管理</el-menu-item>
                 </router-link>
@@ -43,7 +43,7 @@
                     <el-menu-item index="3-2">管理员管理</el-menu-item>
                 </router-link>
                 <router-link to="/userManager" class="custom-link">
-                    <el-menu-item index="3-2">用户管理</el-menu-item>
+                    <el-menu-item index="3-3">用户管理</el-menu-item>
                 </router-link>
             </el-menu-item-group>
         </el-menu>
@@ -51,7 +51,12 @@
     </el-col>
 </template>
 
-<script setup></script>
+<script setup>
+import { reactive } from "vue";
+const data = reactive({
+    user: JSON.parse(localStorage.getItem("code_user") || "{}"),
+});
+</script>
 <style scoped>
 .custom-link {
     text-decoration: none;

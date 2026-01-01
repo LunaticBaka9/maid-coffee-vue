@@ -7,8 +7,8 @@
                 </p>
             </div>
         </el-header>
-        <div class="coffee-content">相关词条：</div>
-        <div class="coffee-content">
+        <div class="wiki-content">相关词条：</div>
+        <div class="wiki-content">
             <el-row :gutter="20">
                 <el-col :span="16">
                     <div class="content-text">
@@ -285,11 +285,6 @@ const coffee = ref("/api/img/wiki/coffee/A_small_cup_of_coffee.JPG");
 </script>
 
 <style scoped>
-.coffee-content {
-    margin: 0 20px 0 20px;
-    background-color: #fff;
-}
-
 .heading {
     font-family: "Linux Libertine", "Georgia", "Times", "Source Serif 4", serif;
     line-height: 1.375;

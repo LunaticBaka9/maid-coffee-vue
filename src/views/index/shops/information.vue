@@ -1,7 +1,11 @@
 <template>
     <div>
         <el-carousel style="height: 700px; margin-top: 10px" :autoplay="false">
-            <el-carousel-item v-for="(image, index) in shopImg" :key="index" style="height: auto; width: 100%">
+            <el-carousel-item
+                v-for="(image, index) in data.shopData.shopImg"
+                :key="index"
+                style="height: auto; width: 100%"
+            >
                 <img :src="image" />
             </el-carousel-item>
         </el-carousel>
@@ -187,25 +191,18 @@ const OpenDays = reactive({
     Sat: 1,
 });
 
-const shopImg = reactive([
-    "/api/img/shop/shopTitleImage/shop_titleimage1_32005_1240.jpg",
-    "/api/img/shop/shopTitleImage/shop_titleimage2_32005_1240.jpg",
-    "/api/img/shop/shopTitleImage/shop_titleimage3_32005_1240.jpg",
-]);
-
 const load = () => {
     request.get("shop/selectShopById/" + data.shopId).then((res) => {
         if (res.code === "200") {
             data.shopData = res.data;
             data.coverPath = res.data.coverPath;
-            data.shopData.shopImg = res.data.shopImg;
+            data.shopData.shopImg = res.data.shopImg.split(",");
             OpenDays.Sun = res.data.sun;
             OpenDays.Mon = res.data.mon;
             OpenDays.Tues = res.data.wed;
             OpenDays.Thur = res.data.thur;
             OpenDays.Fri = res.data.fri;
             OpenDays.Sat = res.data.sat;
-            console.log(data.shopData.shopImg);
         } else {
             ElMessage.error(res.msg);
         }

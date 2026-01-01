@@ -7,11 +7,11 @@
                 </p>
             </div>
         </el-header>
-        <div class="coffee-content">
+        <div class="wiki-content">
             相关词条：
             <router-link to="/wiki/maidCafe">女仆咖啡厅</router-link>
         </div>
-        <div class="coffee-content">
+        <div class="wiki-content">
             <el-row :gutter="20">
                 <el-col :span="16">
                     <div class="content-text">

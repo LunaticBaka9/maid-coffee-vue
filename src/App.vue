@@ -10,7 +10,7 @@
                         <Aside />
                     </el-aside>
 
-                    <router-view :key="route.fullPath"></router-view>
+                    <router-view></router-view>
                 </el-container>
             </el-container>
         </div>
@@ -22,5 +22,10 @@ import { useRoute } from "vue-router";
 import locale from "element-plus/es/locale/lang/zh-cn";
 import Header from "@/views/components/header.vue";
 import Aside from "@/views/components/aside.vue";
+import { onBeforeMount } from "vue";
 const route = useRoute();
+
+onBeforeMount(() => {
+    const userStr = localStorage.getItem("code_user");
+});
 </script>
