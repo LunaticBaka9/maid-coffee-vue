@@ -105,6 +105,7 @@
                         :action="uploadUrl"
                         name="file"
                         :data="uploadData"
+                        :file-list="fileList"
                         :before-upload="beforeUpload"
                         :on-success="handleUploadSuccess"
                         :show-file-list="false"
@@ -117,7 +118,7 @@
                             <div class="el-upload__tip text-red">上传图片尺寸应为 240 x 240 像素</div>
                         </template>
                     </el-upload>
-                    <div v-if="data.form.coverPath" style="margin-top: 8px">
+                    <div v-if="data.form.coverPath" style="margin-top: 8px; margin-left: 20px">
                         <el-image :src="data.form.coverPath" style="width: 80px; height: 80px; object-fit: cover" />
                     </div>
                 </el-form-item>
@@ -322,6 +323,7 @@ const deleteBatch = () => {
 };
 
 const uploadUrl = "/api/upload/shop-cover";
+const fileList = ref([]);
 
 const uploadData = () => {
     return { shopId: data.form.shopId };
@@ -363,7 +365,7 @@ const handleUploadSuccess = (res, file) => {
     if (url) {
         data.form.coverPath = url;
         ElMessage.success("上传成功");
-        // 如果想刷新表格列表，可调用 load()
+        load();
     } else {
         ElMessage.error("上传失败，服务器未返回 URL");
     }
