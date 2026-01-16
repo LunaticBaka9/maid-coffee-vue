@@ -9,7 +9,7 @@
         </el-header>
         <div class="wiki-content">
             相关词条：
-            <router-link to="/wiki/maidCafe">女仆咖啡厅</router-link>
+            <router-link to="/wiki/maidCafe">日本特色咖啡厅</router-link>
         </div>
         <div class="wiki-content">
             <el-row :gutter="20">

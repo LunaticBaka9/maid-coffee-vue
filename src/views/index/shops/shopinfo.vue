@@ -122,7 +122,7 @@
                 <el-tab-pane label="店铺详情" name="first">
                     <information />
                 </el-tab-pane>
-                <el-tab-pane label="最新资讯" name="second">Config</el-tab-pane>
+                <el-tab-pane label="最新资讯" name="second"> 暂无资讯 </el-tab-pane>
                 <el-tab-pane label="店面图片" name="third">Role</el-tab-pane>
                 <el-tab-pane label="其他" name="fourth">Task</el-tab-pane>
             </el-tabs>
