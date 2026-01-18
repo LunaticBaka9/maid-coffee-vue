@@ -17,6 +17,7 @@
                         v-model="data.form.password"
                         autocomplete="off"
                         show-password="true"
+                        name="password"
                         size="large"
                         prefix-icon="Lock"
                         placeholder="请输入密码"
@@ -37,7 +38,6 @@
 import { reactive, ref } from "vue";
 import request from "../../utils/request";
 import { ElMessage } from "element-plus";
-import router from "../../router";
 
 const formRef = ref();
 
@@ -60,7 +60,7 @@ const login = () => {
                     //存储用户信息
                     localStorage.setItem("code_user", JSON.stringify(res.data || "{}"));
                     ElMessage.success("登录成功");
-                    router.go(-1);
+                    location.href = "/";
                 } else {
                     ElMessage.error(res.msg);
                 }

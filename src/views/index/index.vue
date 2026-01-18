@@ -80,9 +80,9 @@
 <script setup name="index">
 import { ref } from "vue";
 
-const bander1 = ref("/api/img/bander/bander1.jpg");
-const bander2 = ref("/api/img/bander/bander2.png");
-const bander3 = ref("/api/img/bander/bander3.webp");
+const bander1 = ref("public/img/bander/bander1.jpg");
+const bander2 = ref("public/img/bander/bander2.png");
+const bander3 = ref("public/img/bander/bander3.webp");
 </script>
 
 <style scoped>

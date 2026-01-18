@@ -6,10 +6,13 @@ import * as ElementPlusIconsVue from "@element-plus/icons-vue"; // 引入 elemen
 import router from "./router/index";
 import "./assets/css/global.css";
 import Axios from "axios";
+import { createPinia } from "pinia";
 
 const app = createApp(App);
 app.use(router);
 app.use(Axios);
+const pinia = createPinia();
+app.use(pinia);
 app.use(ElementPlus); // 使用ElementPlus第三方组件
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component);

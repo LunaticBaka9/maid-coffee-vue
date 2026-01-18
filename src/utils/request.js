@@ -13,14 +13,14 @@ request.interceptors.request.use(
     },
     (error) => {
         return Promise.reject(error);
-    }
+    },
 );
 
 request.interceptors.response.use(
     (response) => {
         const res = response.data;
         if (typeof res === "string") {
-            res = res ? JSON.parse(res) : res; // eslint-disable-line no-unused-vars
+            res = res ? JSON.parse(res) : res;
         }
         return res;
     },
@@ -33,7 +33,7 @@ request.interceptors.response.use(
             console.error(error.message);
         }
         return Promise.reject(error);
-    }
+    },
 );
 
 export default request;
